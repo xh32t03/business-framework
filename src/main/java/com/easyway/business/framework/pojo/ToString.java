@@ -1,7 +1,8 @@
 package com.easyway.business.framework.pojo;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * <pre> ToString基类
@@ -23,20 +24,13 @@ public abstract class ToString implements Serializable {
      */
     @Override
     public String toString() {
-        // return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-        StringBuilder sb = new StringBuilder("[");
-        Field[] fields = getClass().getDeclaredFields();
-        for (Field field : fields) {
-            try {
-                field.setAccessible(true);
-                sb.append(field.getName()).append(":").append(field.get(this)).append(",");
-            } catch (Exception e) {
-            }
-        }
-        if (sb.length() > 1) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
-        sb.append("]");
-        return sb.toString();
+         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+//        return JSON.toJSONString(this, new SerializerFeature[] {
+//                SerializerFeature.WriteMapNullValue,
+//                SerializerFeature.WriteNullListAsEmpty,
+//                SerializerFeature.WriteNullStringAsEmpty,
+//                SerializerFeature.WriteNullNumberAsZero,
+//                SerializerFeature.WriteNullBooleanAsFalse,
+//                SerializerFeature.UseISO8601DateFormat});
     }
 }
