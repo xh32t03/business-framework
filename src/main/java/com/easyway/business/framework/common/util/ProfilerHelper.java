@@ -1,4 +1,4 @@
-package com.easyway.business.framework.util;
+package com.easyway.business.framework.common.util;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -221,9 +221,13 @@ public class ProfilerHelper {
                 }
             }
 
-            return StringUtil.defaultIfEmpty(messageString, null);
+            return defaultIfEmpty(messageString, null);
         }
 
+        public static String defaultIfEmpty(String str, String defaultStr) {
+            return (str == null || str.length() == 0) ? defaultStr : str;
+        }
+        
         /**
          * 取得entry相对于第一个entry的起始时间。
          *
