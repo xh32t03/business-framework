@@ -16,12 +16,15 @@ public final class ObjectUtil {
         return (array == null || array.length == 0);
     }
 
+    public static boolean isNotEmpty(Object[] array) {
+        return (array != null && array.length != 0);
+    }
+    
     @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Object obj) {
         if (obj == null) {
             return true;
         }
-
         if (obj.getClass().isArray()) {
             return Array.getLength(obj) == 0;
         }
@@ -34,7 +37,6 @@ public final class ObjectUtil {
         if (obj instanceof Map) {
             return ((Map) obj).isEmpty();
         }
-
         return false;
     }
 
@@ -43,7 +45,7 @@ public final class ObjectUtil {
     }
     
     /**
-     * 获取指定位数的随机字符串(包含小写字母、大写字母、数字,0<length)
+     * 获取指定位数的随机字符串(包含小写字母、大写字母、数字，0<length)
      * 
      * @param length
      * @return

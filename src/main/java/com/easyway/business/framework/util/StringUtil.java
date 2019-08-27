@@ -5,7 +5,6 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.lang.ArrayUtils;
 
 /**
  * 有关字符串处理的工具类。
@@ -24,7 +23,7 @@ public class StringUtil {
     public static final String      BLANK_STRING = " ";
     
     public static boolean isAnyBlank(String... css) {
-        if (ArrayUtils.isEmpty(css)) {
+        if (ObjectUtil.isEmpty(css)) {
             return true;
         }
         for (final String cs : css) {
@@ -36,7 +35,7 @@ public class StringUtil {
     }
     
     public static boolean isAnyNotBlank(String... css) {
-        if (ArrayUtils.isEmpty(css)) {
+        if (ObjectUtil.isEmpty(css)) {
             return false;
         }
         for (final String cs : css) {
