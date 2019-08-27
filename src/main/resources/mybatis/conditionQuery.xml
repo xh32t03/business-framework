@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="conditionQuery">
+	<sql id="core">
+		<where>
+			<if test="criteriaWithoutValue.size>0">
+				<foreach collection="criteriaWithoutValue" item="item"
+					separator="and">
+					(${item})
+				</foreach>
+			</if>
+			<if test="criteriaWithSingleValue.size>0">
+				<foreach collection="criteriaWithSingleValue" item="item"
+					open="and" separator="and">
+					${item.columnWithTableAlias}
+					${item.equal}
+					#{item.value}
+				</foreach>
+			</if>
+			<if test="criteriaWithListValue.size>0">
+				<foreach collection="criteriaWithListValue" item="item"
+					open="and" separator="and">
+					<if test="item.value.size>0">
+						${item.columnWithTableAlias}
+						${item.equal}
+						<foreach collection="item.value" index="index" item="value"
+							open="(" separator="," close=")">
+							#{value}
+						</foreach>
+					</if>
+				</foreach>
+			</if>
+			<if test="criteriaWithBetweenValue.size>0">
+				<foreach collection="criteriaWithBetweenValue" item="item"
+					open="and" separator="and">
+					${item.columnWithTableAlias} between
+					#{item.beginValue} and
+					#{item.endValue}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+</mapper>

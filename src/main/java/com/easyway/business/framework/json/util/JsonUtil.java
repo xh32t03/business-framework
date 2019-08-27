@@ -1,0 +1,120 @@
+package com.easyway.business.framework.json.util;
+
+import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.util.Collection;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.easyway.business.framework.json.ToJson;
+import com.easyway.business.framework.json.annotion.JsonData;
+import com.easyway.business.framework.json.annotion.NotJsonData;
+
+public class JsonUtil {
+
+    private final static DecimalFormat dfm = new DecimalFormat("##0.00");
+
+    public static JSONObject toJSONObject(Object target) {
+        if (target == null) {
+            return null;
+        }
+        JSONObject jsObject = (JSONObject) JSON.toJSON(target);
+        String methodName = null;
+        try {
+            Method[] methods = target.getClass().getMethods();
+            for (Method method : methods) {
+                methodName = method.getName();
+                if ((!methodName.equals("getClass")) && (!methodName.equals("getHandler"))
+                        && (methodName.startsWith("get"))
+                        && (!method.isAnnotationPresent(NotJsonData.class))
+                        && (method.getParameterTypes().length == 0)) {
+                    String field = methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
+                    Object value = method.invoke(target, new Object[0]);
+                    boolean isJsonData = false;
+                    if (method.isAnnotationPresent(JsonData.class)) {
+                        isJsonData = true;
+                        JsonData setJs = (JsonData) method.getAnnotation(JsonData.class);
+                        if ((setJs.field() != null) && (!"".equals(setJs.field()))) {
+                            field = setJs.field();
+                        }
+                    }
+                    if ((value instanceof Collection) && isJsonData) {
+                        Collection<?> set = (Collection<?>) value;
+                        JSONArray jsonArray = new JSONArray();
+                        for (Object obj : set) {
+                            if ((obj instanceof ToJson)) {
+                                JSONObject jsonObj = ((ToJson) obj).toJSONObject();
+                                jsonArray.add(jsonObj);
+                            } else {
+                                jsonArray.add(obj);
+                            }
+                        }
+                        jsObject.put(field, jsonArray);
+                    } else if ((value instanceof Number)) {
+                        if ((value instanceof Double)) {
+                            jsObject.put(field, dfm.format(value));
+                        }
+                    } else if ((value instanceof ToJson)) {
+                        jsObject.put(field, ((ToJson) value).toJSONObject());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsObject;
+    }
+
+    public static JSONArray toJSONArray(Collection<?> target) {
+        if (target == null) {
+            return null;
+        }
+        JSONArray jsonArray = new JSONArray();
+        for (Object obj : target) {
+            jsonArray.add(toJSONObject(obj));
+        }
+        return jsonArray;
+    }
+
+    public static JSONArray toJSONArray(Object[] target) {
+        if (target == null) {
+            return null;
+        }
+        JSONArray jsonArray = new JSONArray();
+        Object[] arrayOfObject = target;
+        int j = target.length;
+        for (int i = 0; i < j; i++) {
+            Object obj = arrayOfObject[i];
+            jsonArray.add(toJSONObject(obj));
+        }
+        return jsonArray;
+    }
+
+    // private static SerializeConfig mapping = new SerializeConfig();
+    // private static String dateFormat;
+    // static {
+    // dateFormat = "yyyy-MM-dd HH:mm:ss";
+    // mapping.put(Date.class, new SimpleDateFormatSerializer(dateFormat));
+    // }
+    //
+    // /**
+    // * 默认的处理时间
+    // *
+    // * @param jsonText
+    // * @return
+    // */
+    // public static String toJSON(Object jsonText) {
+    // return JSON.toJSONString(jsonText, SerializerFeature.WriteDateUseDateFormat);
+    // }
+    //
+    // /**
+    // * 自定义时间格式
+    // *
+    // * @param jsonText
+    // * @return
+    // */
+    // public static String toJSON(String dateFormat, String jsonText) {
+    // mapping.put(Date.class, new SimpleDateFormatSerializer(dateFormat));
+    // return JSON.toJSONString(jsonText, mapping);
+    // }
+}
