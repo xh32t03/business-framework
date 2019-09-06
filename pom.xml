@@ -9,8 +9,8 @@
 	<properties>
 		<java.version>1.7</java.version>
 		<servlet.version>2.5</servlet.version>
-		<spring.version>4.3.8.RELEASE</spring.version>
-		<jackson.version>2.9.5</jackson.version>
+		<spring.version>5.1.4.RELEASE</spring.version>
+		<jackson.version>2.9.9</jackson.version>
 		<mybatis.version>3.4.5</mybatis.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<log4j2.version>2.11.1</log4j2.version>
@@ -96,11 +96,6 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
 
