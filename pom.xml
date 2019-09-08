@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.xh32t03.framework</groupId>
 	<artifactId>business-framework</artifactId>
-	<version>1.2.3</version>
+	<version>1.0.RELEASE</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -158,11 +158,11 @@
 	<distributionManagement>
 		<repository>
 			<id>maven-releases</id>
-			<url>http://10.10.0.26:1002/repository/maven-releases/</url>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-			<url>http://10.10.0.26:1002/repository/maven-snapshots/</url>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	
