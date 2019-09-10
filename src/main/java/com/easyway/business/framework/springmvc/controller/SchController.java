@@ -32,7 +32,7 @@ public abstract class SchController<Pojo extends BasePojo, Bo extends SchBo<Pojo
 
 	/**
 	 * 控制器初始化时调用
-	 * Spring mvc使用WebDataBinder处理<请求消息，方法入参>的绑定工作
+	 * Spring mvc使用WebDataBinder处理的绑定工作
      * 
 	 * @param request
 	 * @param binder

@@ -19,7 +19,6 @@ public abstract class ToString implements Serializable {
     /** 
      * 重写toString方法
      * 
-     * @param String 字符串
      * @see java.lang.Object#toString()
      */
     @Override

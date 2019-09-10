@@ -15,9 +15,6 @@ import java.util.Map;
  * MyBatis执行sql工具，在写SQL的时候建议使用参数形式的可以是${}或#{}
  *
  * 不建议将参数直接拼到字符串中，当大量这么使用的时候由于缓存MappedStatement而占用更多的内存
- * <bean id="sqlMapper" class="com.hz.business.framework.mybatis.util.SqlMapper" scope="prototype">
-     <constructor-arg ref="sqlSession"/>
-   </bean>
  * @author liuzh
  */
 public class SqlMapper {
