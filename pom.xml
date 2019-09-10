@@ -30,6 +30,7 @@
 	<scm>
 		<url>https://github.com/xh32t03/business-framework</url>
 		<connection>https://github.com/xh32t03/business-framework.git</connection>
+		<developerConnection>https://github.com/xh32t03</developerConnection>
 	</scm>
 
 	<properties>
