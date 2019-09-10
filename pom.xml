@@ -5,7 +5,32 @@
 	<artifactId>business-framework</artifactId>
 	<version>1.0.RELEASE</version>
 	<packaging>jar</packaging>
-
+	<name>business-framework</name>
+    <url>https://github.com/xh32t03/business-framework</url>
+    <description>Spring Business Framework</description>
+    
+    <licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	
+	<developers>
+        <developer>
+            <name>xh32t03</name>
+            <email>ylulu2007@sina.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+    
+    <scm>
+		<url>https://github.com/xh32t03/business-framework</url>
+		<connection>https://github.com/xh32t03/business-framework.git</connection>
+	</scm>
+	
 	<properties>
 		<java.version>1.7</java.version>
 		<servlet.version>2.5</servlet.version>
@@ -191,6 +216,38 @@
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
