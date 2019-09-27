@@ -16,6 +16,14 @@ public class ListValueCondition extends Condition {
         imp.addListValueCondition(this);
     }
 	
+	public ListValueCondition(String condition, List<Object> value) {
+        this(condition, "in", value);
+    }
+	
+	public ListValueCondition(String condition, Object[] value) {
+	    this(condition, "in", value);
+	}
+	
 	public ListValueCondition(String condition, String equal, List<Object> value) {
 		this.column = condition;
 		this.equal = equal;
