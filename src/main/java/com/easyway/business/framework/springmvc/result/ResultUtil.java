@@ -22,6 +22,39 @@ public final class ResultUtil {
         return success(page);
     }
 
+    /**
+     * 渲染成功数据
+     *
+     * @return result
+     */
+    protected ResultBody renderSuccess() {
+        return ResultUtil.success();
+    }
+
+    /**
+     * 渲染成功数据
+     *
+     * @param obj 需要返回的对象
+     * @return result
+     */
+    protected ResultBody renderSuccess(Object result) {
+        return ResultUtil.success(result);
+    }
+    
+    /**
+     * 渲染失败数据
+     *
+     * @param msg 需要返回的消息
+     * @return result
+     */
+    protected ResultBody renderError(String msg) {
+        return ResultUtil.error(msg);
+    }
+
+    public static ResultBody renderError(String code, String msg) {
+        return ResultUtil.error(code, msg);
+    }
+    
     public static ResultBody success() {
         return ResultBody.success();
     }
@@ -35,8 +68,9 @@ public final class ResultUtil {
     }
 
     public static ResultBody error(String code, String msg) {
-        if (StringUtil.isBlank(code))
+        if (StringUtil.isBlank(code)) {
             code = "-1";
+        }
         return new ResultBody(code, msg);
     }
 
