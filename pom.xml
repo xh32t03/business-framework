@@ -34,13 +34,13 @@
 	</scm>
 
 	<properties>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<servlet.version>2.5</servlet.version>
 		<spring.version>5.1.4.RELEASE</spring.version>
 		<jackson.version>2.9.9</jackson.version>
 		<mybatis.version>3.4.5</mybatis.version>
 		<slf4j.version>1.7.25</slf4j.version>
-		<log4j2.version>2.11.1</log4j2.version>
+		<log4j.version>2.12.1</log4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -125,6 +125,11 @@
 			<artifactId>jackson-core</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
 		<!-- slf4j核心包 -->
 		<dependency>
@@ -136,33 +141,35 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 		<!--log4j2核心包 -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>${log4j2.version}</version>
-			<scope>provided</scope>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>${log4j2.version}</version>
-			<scope>provided</scope>
+			<version>${log4j.version}</version>
 		</dependency>
 		<!--用于与sfl4j保持桥接 -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>${log4j2.version}</version>
-			<scope>provided</scope>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!--用于与commons-logging保持桥接 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		<!--web工程需要包含log4j-web，非web工程不需要 -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-web</artifactId>
-			<version>${log4j2.version}</version>
+			<version>${log4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -200,8 +207,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
