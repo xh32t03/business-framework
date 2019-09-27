@@ -148,6 +148,19 @@ public class DateUtil {
     }
 
     /**
+     * 毫秒数转化为日期
+     * 
+     * @param millionSeconds
+     * @return
+     */
+    public static String ymdhmsFormat(long millionSeconds) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(millionSeconds);
+        Date date = c.getTime();
+        return ymdhmsFormat(date);
+    }
+    
+    /**
      * 将日期字符串转化为日期。失败返回null。
      * 
      * @param date 日期字符串
@@ -228,16 +241,4 @@ public class DateUtil {
         return new Timestamp(cal.getTime().getTime());
     }
     
-    /**
-     * 毫秒数转化为日期
-     * 
-     * @param millionSeconds
-     * @return
-     */
-    public static String getDateFromSeconds(long millionSeconds) {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(millionSeconds);
-        Date date = c.getTime();
-        return ymdhmsFormat(date);
-    }
 }

@@ -163,4 +163,52 @@ public class CollectionUtil {
         }
         Collections.reverse(list);
     }
+    
+    /**
+     * 把数组转换为一个用指定分隔符的字符串
+     * @param list
+     * @param split
+     * @return
+     */
+    public static String convertArrayToSplitStr(List<String> list, String split) {
+        StringBuffer result = new StringBuffer();
+        if (CollectionUtil.isNotEmpty(list)) {
+            for (String str : list) {
+                result.append(str).append(split);
+            }
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
+    }
+
+    /**
+     * 把数组转换为一个用逗号分隔的字符串,以便于用in+String查询
+     */
+    public static String arrayToString(String[] ig) {
+        String str = "";
+        if (ig != null && ig.length > 0) {
+            for (int i = 0; i < ig.length; i++) {
+                str += ig[i] + ",";
+            }
+        }
+        str = str.substring(0, str.length() - 1);
+        return str;
+    }
+
+    /**
+     * 把list转换为一个用逗号分隔的字符串
+     */
+    public static String listToString(List list) {
+        StringBuilder sb = new StringBuilder();
+        if (list != null && list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                if (i < list.size() - 1) {// 当循环到最后一个的时候 就不添加逗号,
+                    sb.append(list.get(i) + ",");
+                } else {
+                    sb.append(list.get(i));
+                }
+            }
+        }
+        return sb.toString();
+    }
 }
