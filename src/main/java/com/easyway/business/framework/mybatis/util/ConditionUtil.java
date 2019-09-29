@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.easyway.business.framework.mybatis.annotion.factory.AnnotationConditionFactory;
 import com.easyway.business.framework.mybatis.query.condition.Condition;
 
-public class ConditionUtil {
+public final class ConditionUtil {
     private final static Logger logger = LoggerFactory.getLogger(ConditionUtil.class);
     
 	public static List<Condition> getConditions(Object target) {
