@@ -55,6 +55,10 @@ public final class ResultUtil {
         return ResultUtil.error(code, msg);
     }
     
+    public static ResultBody renderError(EnumBase errorInfo) {
+        return ResultUtil.error(errorInfo);
+    }
+    
     public static ResultBody success() {
         return ResultBody.success();
     }
