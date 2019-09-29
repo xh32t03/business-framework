@@ -16,7 +16,7 @@ public class QuerySupport {
     }
 
     /**
-     * 默认的query、queryCnt不能满足分页列表（多表关联），可定义frontList、frontListCnt
+     * 默认的query、queryCnt不能满足分页查询，可定义frontList、frontListCnt
      * 
      * @param grid
      * @return
