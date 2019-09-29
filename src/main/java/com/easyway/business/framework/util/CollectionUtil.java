@@ -46,6 +46,13 @@ public class CollectionUtil {
 		list.add(obj);
 	}
 
+    /**
+     * 判断list列表字符串
+     * 
+     * @param str
+     * @param list
+     * @return
+     */
 	public static boolean strInList(String str, List<String> list) {
 		if (isEmpty(list)) {
 			return false;
