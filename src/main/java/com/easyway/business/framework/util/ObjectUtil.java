@@ -7,7 +7,6 @@ import java.util.Map;
 public final class ObjectUtil {
 
     public static final String EMPTY_STRING = "";
-    public static final String NULL_STRING  = "null";
     public static final String ARRAY_START  = "{";
     public static final String ARRAY_END    = "}";
     public static final String EMPTY_ARRAY  = ARRAY_START + ARRAY_END;

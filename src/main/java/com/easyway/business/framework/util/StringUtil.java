@@ -17,17 +17,19 @@ import java.util.regex.Pattern;
 public class StringUtil {
 
     /** 空字符串。 */
-    public static final String      EMPTY_STRING = "";
+    public static final String EMPTY_STRING = "";
 
     /** 空格字符串。 */
-    public static final String      BLANK_STRING = " ";
+    public static final String BLANK_STRING = " ";
+    
+    public static final String NULL_STRING  = "null";
     
     public static boolean isAnyBlank(String... css) {
         if (ObjectUtil.isEmpty(css)) {
             return true;
         }
         for (final String cs : css) {
-            if (isBlank(cs)) {
+            if (StringUtil.isBlank(cs)) {
                 return true;
             }
         }
@@ -39,7 +41,7 @@ public class StringUtil {
             return false;
         }
         for (final String cs : css) {
-            if (isNotBlank(cs)) {
+            if (StringUtil.isNotBlank(cs)) {
                 return true;
             }
         }
@@ -47,7 +49,7 @@ public class StringUtil {
     }
     
     public static boolean checkIsEmpty(String str) {
-        return StringUtil.isEmpty(str) || (ObjectUtil.NULL_STRING.equals(str));
+        return StringUtil.isEmpty(str) || (StringUtil.NULL_STRING.equals(str));
     }
     
     public static boolean checkIsNotEmpty(String str) {
