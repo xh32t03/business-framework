@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateUtil {
+public final class DateUtil {
 
     // 默认日期格式
     public static final String           YMD_FORMAT     = "yyyy-MM-dd";
@@ -19,8 +19,8 @@ public class DateUtil {
     public static final SimpleDateFormat FORMAT_YMDHM         = new SimpleDateFormat(YMDHM_FORMAT);
     public static final SimpleDateFormat FORMAT_YMDHMS        = new SimpleDateFormat(YMDHMS_FORMAT);
 
-    public static final SimpleDateFormat SHORT_DATE_FORMAT    = new SimpleDateFormat("yyyyMMdd");
-    public static final SimpleDateFormat LONG_DATETIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
+    public static final SimpleDateFormat FORMAT_SHORT_DATE    = new SimpleDateFormat("yyyyMMdd");
+    public static final SimpleDateFormat FORMAT_LONG_DATETIME = new SimpleDateFormat("yyyyMMddHHmmss");
     
     public static final long             MS             = 1L;
     public static final long             SECOND_MS      = 1000L;// 一秒钟的毫秒数
@@ -46,6 +46,16 @@ public class DateUtil {
     }
 
     /**
+     * 获取当前日期
+     * 
+     * @return
+     * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
+     */
+    public static Date now() {
+        return currentDate();
+    }
+    
+    /**
      * @return
      * @description 得到当前时间 yyyy-MM-dd
      */
@@ -55,14 +65,6 @@ public class DateUtil {
         return createTime;
     }
 
-    /**
-     * @return
-     * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
-     */
-    public static String now() {
-        return getCurrentTime();
-    }
-    
     /**
      * @return
      * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
@@ -80,7 +82,7 @@ public class DateUtil {
      * @return
      */
     public static String getShortDateStr() {
-        return SHORT_DATE_FORMAT.format(new Date());
+        return FORMAT_SHORT_DATE.format(new Date());
     }
 
     /**
@@ -89,7 +91,7 @@ public class DateUtil {
      * @return
      */
     public static String getLongDateStr() {
-        return LONG_DATETIME_FORMAT.format(new Date());
+        return FORMAT_LONG_DATETIME.format(new Date());
     }
     
     /**
@@ -106,6 +108,21 @@ public class DateUtil {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    /**
+     * 日期格式化
+     * 
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static String formatDate(Date date, String pattern) {
+        if (date == null) {
+            return null;
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        return formatter.format(date);
     }
     
     /**
@@ -215,7 +232,7 @@ public class DateUtil {
      * @param days: 天数
      * @return 返回Date对象
      */
-    public static Date getDayAdd(Date date, int days) {
+    public static Date dayAdd(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days);
@@ -223,13 +240,13 @@ public class DateUtil {
     }
 
     /**
-     * 将日期往后加几天
+     * 获取N天后的时间
      * 
      * @param somedate
      * @param day
      * @return
      */
-    public static Date getDateAfterDay(Date somedate, int day) {
+    public static Date getNextDay(Date somedate, int day) {
         if (somedate == null) return null;
         Calendar cal = Calendar.getInstance();
         cal.setTime(somedate);
@@ -241,11 +258,52 @@ public class DateUtil {
         return new Date(cal.getTime().getTime());
     }
 
-    public static Timestamp getDateAfterDay(int day) {
+    public static Timestamp getNextDay(int day) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DAY_OF_MONTH, day);
         return new Timestamp(cal.getTime().getTime());
     }
     
+    /**
+     * 获得星期几(周日为1，周六为7)
+     * 
+     * @param date 给定日期
+     * @return
+     */
+    public static int getDay(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+    /**
+     * 获得星期几（中文）
+     * 
+     * @param date
+     * @return
+     */
+    public static String getDayCN(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (dayOfWeek) {
+            case 1:
+                return "星期日";
+            case 2:
+                return "星期一";
+            case 3:
+                return "星期二";
+            case 4:
+                return "星期三";
+            case 5:
+                return "星期四";
+            case 6:
+                return "星期五";
+            case 7:
+                return "星期六";
+            default:
+                return "";
+        }
+    }
 }
