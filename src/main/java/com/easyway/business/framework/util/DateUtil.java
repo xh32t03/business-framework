@@ -50,7 +50,7 @@ public class DateUtil {
      * @description 得到当前时间 yyyy-MM-dd
      */
     public static String getCurrentDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat(YMD_FORMAT);
         String createTime = formatter.format(new Date());
         return createTime;
     }
@@ -68,7 +68,7 @@ public class DateUtil {
      * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
      */
     public static String getCurrentTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat(YMDHMS_FORMAT);
         String createTime = formatter.format(new Date());
         return createTime;
     }
@@ -209,10 +209,10 @@ public class DateUtil {
     }
     
     /**
-     * 根据日期获取相差的月份
+     * 根据日期增加天数
      * 
      * @param date: 给定的日期
-     * @param months: 相差的月份数
+     * @param days: 天数
      * @return 返回Date对象
      */
     public static Date getDayAdd(Date date, int days) {
@@ -222,6 +222,13 @@ public class DateUtil {
         return new Date(cal.getTime().getTime());
     }
 
+    /**
+     * 将日期往后加几天
+     * 
+     * @param somedate
+     * @param day
+     * @return
+     */
     public static Date getDateAfterDay(Date somedate, int day) {
         if (somedate == null) return null;
         Calendar cal = Calendar.getInstance();
