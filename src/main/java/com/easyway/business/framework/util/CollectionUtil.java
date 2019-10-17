@@ -173,6 +173,7 @@ public class CollectionUtil {
     
     /**
      * 把数组转换为一个用指定分隔符的字符串
+     * 
      * @param list
      * @param split
      * @return
