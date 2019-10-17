@@ -46,6 +46,14 @@ public class StringUtil {
         return false;
     }
     
+    public static boolean checkIsEmpty(String str) {
+        return StringUtil.isEmpty(str) || (ObjectUtil.NULL_STRING.equals(str));
+    }
+    
+    public static boolean checkIsNotEmpty(String str) {
+        return !checkIsEmpty(str);
+    }
+  
     /**
      * 取得字符串的长度。
      *

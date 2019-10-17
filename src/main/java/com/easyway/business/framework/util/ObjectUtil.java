@@ -12,6 +12,14 @@ public final class ObjectUtil {
     public static final String ARRAY_END    = "}";
     public static final String EMPTY_ARRAY  = ARRAY_START + ARRAY_END;
 
+    public static boolean isNull(Object obj) {
+        return obj == null;
+    }
+
+    public static boolean isNotNull(Object obj) {
+        return !isNotEmpty(obj);
+    }
+    
     public static boolean isEmpty(Object[] array) {
         return (array == null || array.length == 0);
     }
