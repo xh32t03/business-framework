@@ -56,7 +56,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
 
     private static void checkApplicationContext() {
         if (applicationContext == null) {
-            throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContextHolder");
+            throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContext");
         }
     }
 
