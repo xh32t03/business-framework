@@ -8,7 +8,6 @@ import com.easyway.business.framework.common.enums.EnumBase;
 import com.easyway.business.framework.json.JsonClothProcessor;
 import com.easyway.business.framework.json.util.JsonUtil;
 import com.easyway.business.framework.pojo.Page;
-import com.easyway.business.framework.util.StringUtil;
 
 public final class ResultUtil {
 
@@ -90,9 +89,6 @@ public final class ResultUtil {
     }
 
     public static ResultBody error(String code, String msg) {
-        if (StringUtil.isBlank(code)) {
-            code = "-1";
-        }
         return new ResultBody(code, msg);
     }
 
