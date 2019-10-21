@@ -27,7 +27,7 @@ public final class ResultUtil {
      *
      * @return result
      */
-    protected ResultBody renderSuccess() {
+    public ResultBody renderSuccess() {
         return ResultUtil.success();
     }
 
@@ -37,7 +37,7 @@ public final class ResultUtil {
      * @param obj 需要返回的对象
      * @return result
      */
-    protected ResultBody renderSuccess(Object result) {
+    public ResultBody renderSuccess(Object result) {
         return ResultUtil.success(result);
     }
     
@@ -47,7 +47,7 @@ public final class ResultUtil {
      * @param msg 需要返回的消息
      * @return result
      */
-    protected ResultBody renderError(String msg) {
+    public ResultBody renderError(String msg) {
         return ResultUtil.error(msg);
     }
 
@@ -57,6 +57,24 @@ public final class ResultUtil {
     
     public static ResultBody renderError(EnumBase errorInfo) {
         return ResultUtil.error(errorInfo);
+    }
+    
+    /**
+     * 返回消息体
+     * 
+     * @param code
+     * @param msg
+     * @return
+     */
+    public static ResultBody renderBody(String code, String msg) {
+        return new ResultBody(code, msg);
+    }
+    
+    public static ResultBody renderBody(EnumBase errorInfo) {
+        ResultBody resultBody = new ResultBody();
+        resultBody.setCode(errorInfo.code());
+        resultBody.setMsg(errorInfo.message());
+        return resultBody;
     }
     
     public static ResultBody success() {
