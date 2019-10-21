@@ -27,7 +27,7 @@ public final class ResultUtil {
      *
      * @return result
      */
-    public ResultBody renderSuccess() {
+    public static ResultBody renderSuccess() {
         return ResultUtil.success();
     }
 
@@ -37,7 +37,7 @@ public final class ResultUtil {
      * @param obj 需要返回的对象
      * @return result
      */
-    public ResultBody renderSuccess(Object result) {
+    public static ResultBody renderSuccess(Object result) {
         return ResultUtil.success(result);
     }
     
@@ -47,7 +47,7 @@ public final class ResultUtil {
      * @param msg 需要返回的消息
      * @return result
      */
-    public ResultBody renderError(String msg) {
+    public static ResultBody renderError(String msg) {
         return ResultUtil.error(msg);
     }
 
