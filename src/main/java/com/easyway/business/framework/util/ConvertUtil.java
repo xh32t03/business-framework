@@ -5,8 +5,10 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.cglib.beans.BeanMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -95,16 +97,30 @@ public class ConvertUtil {
      * @param source 要拷贝的对象
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static String[] getNullPropertyNames(Object source) {
-        final BeanWrapper src = new BeanWrapperImpl(source);
-        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+        final BeanWrapper beanWrapper = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
 
-        Set<String> emptyNames = new HashSet<String>();
-        for (java.beans.PropertyDescriptor pd : pds) {
-            Object srcValue = src.getPropertyValue(pd.getName());
-            if (srcValue == null)
+        Set<String> emptyNames = new HashSet<>();
+        Arrays.stream(pds).forEach(pd -> {
+            Object propertyValue = beanWrapper.getPropertyValue(pd.getName());
+            if (propertyValue == null) {
                 emptyNames.add(pd.getName());
-        }
+            } else {
+                if (Iterable.class.isAssignableFrom(propertyValue.getClass())) {
+                    Iterable iterable = (Iterable) propertyValue;
+                    Iterator iterator = iterable.iterator();
+                    if (!iterator.hasNext())
+                        emptyNames.add(pd.getName());
+                }
+                if (Map.class.isAssignableFrom(propertyValue.getClass())) {
+                    Map map = (Map) propertyValue;
+                    if (map.isEmpty())
+                        emptyNames.add(pd.getName());
+                }
+            }
+        });
         String[] result = new String[emptyNames.size()];
         return emptyNames.toArray(result);
     }
