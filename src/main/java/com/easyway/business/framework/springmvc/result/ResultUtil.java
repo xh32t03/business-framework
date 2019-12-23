@@ -18,6 +18,7 @@ public final class ResultUtil {
 
     public static ResultBody success(Page page, JsonClothProcessor clothProcessor) {
         Assert.assertNotNull(page);
+        Assert.assertNotNull(clothProcessor);
         List<JSONObject> jsonObjList = wearCloth(page.getList(), clothProcessor);
         page.setList(jsonObjList);
         return success(page);
