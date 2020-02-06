@@ -1,6 +1,8 @@
 package com.easyway.business.framework.springmvc.handler;
 
 import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 import com.easyway.business.framework.constant.Constant;
@@ -26,6 +28,8 @@ import com.easyway.business.framework.constant.Constant;
  */
 public class DateConverter implements Converter<String, Date> {
 
+    private static final Logger logger = LoggerFactory.getLogger(DateConverter.class);
+    
     @Override
     public Date convert(String source) {
         try {
@@ -37,10 +41,8 @@ public class DateConverter implements Converter<String, Date> {
                 return Constant.NORM_DATE_FORMAT.parse(source);
             }
         } catch (Exception e) {
-            System.out.println(source);
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
-
         return null;
     }
 
