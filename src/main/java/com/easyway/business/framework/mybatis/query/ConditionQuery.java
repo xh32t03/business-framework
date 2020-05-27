@@ -105,4 +105,10 @@ public class ConditionQuery {
         this.paramMap.putAll(map);
     }
 
+    public ConditionQuery cloneConditionQuery(ConditionQuery query) {
+        ConditionQuery m_query = new ConditionQuery();
+        m_query.addAll(query.getAllCondition());
+        m_query.addAllParam(query.getParamMap());
+        return m_query;
+    }
 }
