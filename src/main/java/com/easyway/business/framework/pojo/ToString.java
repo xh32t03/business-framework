@@ -24,12 +24,5 @@ public abstract class ToString implements Serializable {
     @Override
     public String toString() {
          return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-//        return JSON.toJSONString(this, new SerializerFeature[] {
-//                SerializerFeature.WriteMapNullValue,
-//                SerializerFeature.WriteNullListAsEmpty,
-//                SerializerFeature.WriteNullStringAsEmpty,
-//                SerializerFeature.WriteNullNumberAsZero,
-//                SerializerFeature.WriteNullBooleanAsFalse,
-//                SerializerFeature.UseISO8601DateFormat});
     }
 }
