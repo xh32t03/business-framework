@@ -95,6 +95,7 @@ public class ListValueCondition extends Condition {
 			sb.append("'");
 			sb.append(v);
 			sb.append("'");
+			first = false;
 		}
 		sb.append(")");
 		return sb.toString();
