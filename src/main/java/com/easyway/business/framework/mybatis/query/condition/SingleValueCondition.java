@@ -53,7 +53,7 @@ public class SingleValueCondition extends Condition {
 
 	public String toSql() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.column);
+		sb.append(this.getColumnWithTableAlias());
 		sb.append(" ");
 		sb.append(this.equal);
 		sb.append(" '");
