@@ -32,9 +32,9 @@ public abstract class AnnotationConditionFactory {
 	public static Condition buildCondition(Annotation annotation, Object value) {
 		AnnotationConditionFactory factory = (AnnotationConditionFactory) factorys
 				.get(annotation.annotationType().getSimpleName());
-		if ((factory == null) || (value == null) || (((value instanceof String)) && (((String) value).equals("")))) {
-			return null;
-		}
+        if ((factory == null) || (value == null) || ((value instanceof String) && ((String) value).equals(""))) {
+            return null;
+        }
 		return factory.build(annotation, value);
 	}
 
