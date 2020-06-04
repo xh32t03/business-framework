@@ -25,13 +25,11 @@ public final class ConditionUtil {
 				Annotation[] annotations = method.getAnnotations();
 				if ((methodName.startsWith("get")) && (AnnotationConditionFactory.couldBuild(annotations))) {
 					Object value = method.invoke(target, new Object[0]);
-                    if (value != null) {
-					    for (Annotation annotation : annotations) {
-	                        Condition condition = AnnotationConditionFactory.buildCondition(annotation, value);
-	                        if (condition != null) {
-	                            retList.add(condition);
-	                        }
-	                    }
+					for (Annotation annotation : annotations) {
+						Condition condition = AnnotationConditionFactory.buildCondition(annotation, value);
+						if (condition != null) {
+						    retList.add(condition);
+						}
 					}
 				}
 			}
