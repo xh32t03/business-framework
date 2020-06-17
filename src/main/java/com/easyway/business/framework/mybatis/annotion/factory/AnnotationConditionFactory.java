@@ -1,6 +1,8 @@
 package com.easyway.business.framework.mybatis.annotion.factory;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Array;
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.easyway.business.framework.mybatis.query.condition.Condition;
@@ -29,10 +31,13 @@ public abstract class AnnotationConditionFactory {
 		return false;
 	}
 
-	public static Condition buildCondition(Annotation annotation, Object value) {
+	@SuppressWarnings("rawtypes")
+    public static Condition buildCondition(Annotation annotation, Object value) {
 		AnnotationConditionFactory factory = (AnnotationConditionFactory) factorys
 				.get(annotation.annotationType().getSimpleName());
-        if ((factory == null) || (value == null) || ((value instanceof String) && ((String) value).equals(""))) {
+        if ((factory == null) || (value == null) || ((value instanceof String) && ((String) value).equals(""))
+                || (value.getClass().isArray() && (Array.getLength(value) == 0))
+                || (value instanceof Collection && ((Collection) value).isEmpty())) {
             return null;
         }
 		return factory.build(annotation, value);
