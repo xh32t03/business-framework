@@ -43,7 +43,7 @@ public class BetweenValueCondition extends Condition {
 
 	public String toSql() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.column);
+		sb.append(this.getColumnWithTableAlias());
 		sb.append(" between ");
 		sb.append("'");
 		sb.append(this.beginValue);
