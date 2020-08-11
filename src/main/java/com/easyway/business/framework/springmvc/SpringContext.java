@@ -4,6 +4,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 /**
  * Spring上下文
@@ -13,8 +15,8 @@ import org.springframework.context.ApplicationContextAware;
  * 
  * @author xl.liu
  */
-// @Service
-// @Lazy(false)
+@Component
+@Lazy(false)
 public class SpringContext implements ApplicationContextAware, DisposableBean {
 
     private static ApplicationContext applicationContext;
