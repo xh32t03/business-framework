@@ -52,8 +52,11 @@ public final class ListUtil {
      * @return
      */
     public static String[] listToArray(List<String> list) {
-        String[] result = list.stream().toArray(String[]::new);
-        Arrays.stream(result).forEach(str -> System.err.println(str));
-        return result;
+        if (CollectionUtil.isNotEmpty(list)) {
+            String[] result = list.stream().toArray(String[]::new);
+            Arrays.stream(result).forEach(str -> System.err.println(str));
+            return result;
+        }
+        return null;
     }
 }
