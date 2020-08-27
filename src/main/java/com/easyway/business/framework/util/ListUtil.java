@@ -3,6 +3,7 @@ package com.easyway.business.framework.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,7 +41,7 @@ public final class ListUtil {
      * @return
      */
     public static List<String> arrayToList(String[] arrays) {
-        List<String> result = Stream.of(arrays).collect(Collectors.toList());
+        List<String> result = Stream.of(arrays).filter(Objects::nonNull).collect(Collectors.toList());
         return result;
     }
 
