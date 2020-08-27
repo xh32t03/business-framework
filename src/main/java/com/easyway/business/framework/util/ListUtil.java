@@ -1,7 +1,10 @@
 package com.easyway.business.framework.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class ListUtil {
 
@@ -30,4 +33,26 @@ public final class ListUtil {
         return result;
     }
 
+    /**
+     * Java8 数组转为List
+     * 
+     * @param arrays
+     * @return
+     */
+    public static List<String> arrayToList(String[] arrays) {
+        List<String> result = Stream.of(arrays).collect(Collectors.toList());
+        return result;
+    }
+
+    /**
+     * Java8 List转为数组
+     * 
+     * @param list
+     * @return
+     */
+    public static String[] listToArray(List<String> list) {
+        String[] result = list.stream().toArray(String[]::new);
+        Arrays.stream(result).forEach(str -> System.err.println(str));
+        return result;
+    }
 }
