@@ -67,7 +67,7 @@ public class StringUtil {
     }
     
     public static String defaultIfEmpty(String str, String defaultStr) {
-        return StringUtil.isEmpty(str) ? defaultStr : str;
+        return StringUtil.checkIsEmpty(str) ? defaultStr : str;
     }
     
     // ==========================================================================
