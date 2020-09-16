@@ -24,6 +24,14 @@ public class StringUtil {
     
     public static final String NULL_STRING  = "null";
     
+    public static boolean checkIsEmpty(String str) {
+        return StringUtil.isEmpty(str) || (StringUtil.NULL_STRING.equals(str));
+    }
+    
+    public static boolean checkIsNotEmpty(String str) {
+        return !checkIsEmpty(str);
+    }
+    
     public static boolean isAnyBlank(String... css) {
         if (ObjectUtil.isEmpty(css)) {
             return true;
@@ -48,14 +56,6 @@ public class StringUtil {
         return false;
     }
     
-    public static boolean checkIsEmpty(String str) {
-        return StringUtil.isEmpty(str) || (StringUtil.NULL_STRING.equals(str));
-    }
-    
-    public static boolean checkIsNotEmpty(String str) {
-        return !checkIsEmpty(str);
-    }
-  
     /**
      * 取得字符串的长度。
      *
