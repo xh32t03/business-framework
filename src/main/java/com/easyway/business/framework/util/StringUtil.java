@@ -845,10 +845,6 @@ public class StringUtil {
         return builder.toString().substring(0, builder.toString().length() - 1);
     }
     
-    /*
-     * ==========================================================================
-     * ==
-     */
     /* 大小写转换。 */
     /*
      * ==========================================================================
@@ -1065,36 +1061,6 @@ public class StringUtil {
         return c;
     }
     
-    /**
-     * 将字符串转换成大写
-     * 
-     * @param str 字符串
-     * @return
-     */
-    public static String greatString(String str) {
-        String upStr = str.toUpperCase();
-        StringBuffer buf = new StringBuffer(str.length());
-        for (int i = 0; i < str.length(); i++) {
-            buf.append(upStr.charAt(i));
-        }
-        return buf.toString();
-    }
-
-    /**
-     * 将字符串转换成小写
-     * 
-     * @param str 字符串
-     * @return
-     */
-    public static String smallString(String str) {
-        String upLower = str.toLowerCase();
-        StringBuffer buf = new StringBuffer(str.length());
-        for (int i = 0; i < str.length(); i++) {
-            buf.append(upLower.charAt(i));
-        }
-        return buf.toString();
-    }
-
     /**
      * 判断字符串是否全为数字
      * 
