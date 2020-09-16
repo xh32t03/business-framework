@@ -6,45 +6,61 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("all")
 public class CollectionUtil {
-	public static boolean isEmpty(Collection collection) {
-		return (collection == null) || (collection.isEmpty());
-	}
+    public static boolean checkIsEmpty(Collection collection) {
+        return CollectionUtil.isEmpty(collection);
+    }
 
-	public static boolean isEmpty(Map<?, ?> map) {
+    public static boolean checkIsNotEmpty(Collection collection) {
+        return CollectionUtil.isNotEmpty(collection);
+    }
+
+    public static boolean checkIsEmpty(Object[] objArray) {
+        return CollectionUtil.isEmpty(objArray);
+    }
+
+    public static boolean checkIsNotEmpty(Object[] objArray) {
+        return CollectionUtil.isNotEmpty(objArray);
+    }
+
+    public static boolean isEmpty(Collection collection) {
+        return (collection == null) || (collection.isEmpty());
+    }
+
+    public static boolean isEmpty(Map<?, ?> map) {
         return (map == null || map.isEmpty());
     }
 
-	public static boolean isNotEmpty(Collection collection) {
-		return !isEmpty(collection);
-	}
+    public static boolean isNotEmpty(Collection collection) {
+        return !isEmpty(collection);
+    }
 
-	public static boolean isNotEmpty(Map<?, ?> map) {
-		return !isEmpty(map);
-	}
+    public static boolean isNotEmpty(Map<?, ?> map) {
+        return !isEmpty(map);
+    }
 
-	public static boolean isEmpty(Object[] objArray) {
-		return (objArray == null) || (objArray.length == 0);
-	}
+    public static boolean isEmpty(Object[] objArray) {
+        return (objArray == null) || (objArray.length == 0);
+    }
 
-	public static boolean isNotEmpty(Object[] objArray) {
-		return !isEmpty(objArray);
-	}
+    public static boolean isNotEmpty(Object[] objArray) {
+        return !isEmpty(objArray);
+    }
 
-	public static void addNotEmptyStr(String str, List<String> list) {
-		if (StringUtil.isEmpty(str)) {
-			return;
-		}
-		list.add(str);
-	}
+    public static void addNotEmptyStr(String str, List<String> list) {
+        if (StringUtil.isEmpty(str)) {
+            return;
+        }
+        list.add(str);
+    }
 
-	public static void addNotEmptyVal(Object obj, List<Object> list) {
-		if (obj == null) {
-			return;
-		}
-		list.add(obj);
-	}
+    public static void addNotEmptyVal(Object obj, List<Object> list) {
+        if (obj == null) {
+            return;
+        }
+        list.add(obj);
+    }
 
     /**
      * 判断list列表字符串
@@ -53,22 +69,22 @@ public class CollectionUtil {
      * @param list
      * @return
      */
-	public static boolean strInList(String str, List<String> list) {
-		if (isEmpty(list)) {
-			return false;
-		}
-		if (str == null) {
-			return false;
-		}
-		for (String listStr : list) {
-			if (str.equals(listStr)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
+    public static boolean strInList(String str, List<String> list) {
+        if (isEmpty(list)) {
+            return false;
+        }
+        if (str == null) {
+            return false;
+        }
+        for (String listStr : list) {
+            if (str.equals(listStr)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 移除空字符串
      * 
      * @param collections
@@ -127,8 +143,7 @@ public class CollectionUtil {
      * @param object
      * @return
      */
-    public static <T extends Comparable<? super T>> List<T> equal(Collection<T> collections,
-                                                                  T object) {
+    public static <T extends Comparable<? super T>> List<T> equal(Collection<T> collections, T object) {
         List<T> returnList = new ArrayList<T>();
         for (T e : collections) {
             if (e.compareTo(object) == 0) {
@@ -137,7 +152,7 @@ public class CollectionUtil {
         }
         return returnList;
     }
-    
+
     /**
      * coll1是否全包含coll2的值
      * 
@@ -170,7 +185,7 @@ public class CollectionUtil {
         }
         Collections.reverse(list);
     }
-    
+
     /**
      * 把数组转换为一个用指定分隔符的字符串
      * 
@@ -219,7 +234,7 @@ public class CollectionUtil {
         }
         return sb.toString();
     }
-    
+
     /**
      * Java8 数组转为List
      * 
@@ -238,5 +253,5 @@ public class CollectionUtil {
      */
     public static String[] listToArray(List<String> list) {
         return ListUtil.listToArray(list);
-    }    
+    }
 }
