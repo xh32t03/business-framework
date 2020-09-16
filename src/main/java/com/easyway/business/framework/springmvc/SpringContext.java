@@ -15,8 +15,9 @@ import org.springframework.stereotype.Component;
  * 
  * @author xl.liu
  */
-@Component
-@Lazy(false)
+//@Component
+//@Lazy(false)
+@SuppressWarnings("all")
 public class SpringContext implements ApplicationContextAware, DisposableBean {
 
     private static ApplicationContext applicationContext;
@@ -36,7 +37,6 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
     /**
      * 从静态变量applicationContext中取得Bean,自动转型为所赋值对象的类型.
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getBean(String name) throws BeansException {
         checkApplicationContext();
         return (T) applicationContext.getBean(name);
@@ -45,7 +45,6 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
     /**
      * 从静态变量applicationContext中取得Bean,自动转型为所赋值对象的类型.
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getBean(Class<T> clazz) throws BeansException {
         checkApplicationContext();
         return (T) applicationContext.getBeansOfType(clazz);
