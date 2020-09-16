@@ -219,4 +219,24 @@ public class CollectionUtil {
         }
         return sb.toString();
     }
+    
+    /**
+     * Java8 数组转为List
+     * 
+     * @param arrays
+     * @return
+     */
+    public static List<String> arrayToList(String[] arrays) {
+        return ListUtil.arrayToList(arrays);
+    }
+
+    /**
+     * Java8 List转为数组
+     * 
+     * @param list
+     * @return
+     */
+    public static String[] listToArray(List<String> list) {
+        return ListUtil.listToArray(list);
+    }    
 }
