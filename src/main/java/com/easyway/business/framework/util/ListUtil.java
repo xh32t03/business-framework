@@ -1,5 +1,9 @@
 package com.easyway.business.framework.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +39,17 @@ public final class ListUtil {
         return result;
     }
 
+    public static <T> List<T> deepCopy(List<T> src) throws Exception {
+        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(byteOut);
+        out.writeObject(src);
+        
+        ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(byteIn);
+        List<T> dest = (List<T>) in.readObject();
+        return dest;
+    }
+    
     /**
      * Java8 数组转为List
      * 
