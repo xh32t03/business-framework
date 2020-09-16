@@ -11,12 +11,12 @@ public final class ObjectUtil {
     public static final String ARRAY_END    = "}";
     public static final String EMPTY_ARRAY  = ARRAY_START + ARRAY_END;
 
-    public static boolean checkIsEmpty(String str) {
-        return ObjectUtil.isEmpty(str);
+    public static boolean checkIsEmpty(Object obj) {
+        return ObjectUtil.isEmpty(obj);
     }
     
-    public static boolean checkIsNotEmpty(String str) {
-        return !checkIsEmpty(str);
+    public static boolean checkIsNotEmpty(Object obj) {
+        return ObjectUtil.isNotEmpty(obj);
     }
     
     public static boolean isNull(Object obj) {
@@ -75,5 +75,5 @@ public final class ObjectUtil {
         newArr[newArr.length - 1] = obj;
         return newArr;
     }
-
+    
 }
