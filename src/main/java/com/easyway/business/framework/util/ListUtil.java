@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -51,6 +52,34 @@ public final class ListUtil {
     }
     
     /**
+     * 调换集合中两个指定位置的元素, 若两个元素位置中间还有其他元素，需要实现中间元素的前移或后移的操作。
+     * 
+     * @param list 集合
+     * @param oldPosition 需要调换的元素
+     * @param newPosition 被调换的元素
+     * @param <T>
+     */
+    public static <T> void swap(List<T> list, int oldPosition, int newPosition) {
+        if (null == list) {
+            throw new IllegalStateException("The list can not be empty..");
+        }
+
+        // 向前移动，前面的元素需要向后移动
+        if (oldPosition < newPosition) {
+            for (int i = oldPosition; i < newPosition; i++) {
+                Collections.swap(list, i, i + 1);
+            }
+        }
+
+        // 向后移动，后面的元素需要向前移动
+        if (oldPosition > newPosition) {
+            for (int i = oldPosition; i > newPosition; i--) {
+                Collections.swap(list, i, i - 1);
+            }
+        }
+    }
+    
+    /**
      * Java8 数组转为List
      * 
      * @param arrays
@@ -77,7 +106,7 @@ public final class ListUtil {
     }
 
     /**
-     * 把数组转换为一个用逗号分隔的字符串
+     * 把array转换为一个用逗号分隔的字符串
      */
     public static String arrayToString(String[] ig) {
         String str = "";
@@ -150,5 +179,62 @@ public final class ListUtil {
             result.deleteCharAt(result.length() - 1);
         }
         return result.toString();
+    }
+    
+    /**
+     * 拼接IN条件值
+     * 
+     * @param str
+     * @return
+     */
+    public static String getInCond(String str) {
+        String[] strArr = str.split(",");
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < strArr.length; i++) {
+            if (i == strArr.length - 1) {
+                sb.append("'" + strArr[i] + "'");
+            } else {
+                sb.append("'" + strArr[i] + "'" + ",");
+            }
+        }
+        return sb.toString();
+    }
+    
+    /**
+     * 拼接IN条件值
+     * 
+     * @param str
+     * @return
+     */
+    public static String getInCond(List<String> list) {
+        StringBuffer sb = new StringBuffer();
+        if (list != null && !list.isEmpty()) {
+            for (String value : list) {
+                if (value != null) {
+                    sb.append("'").append(value).append("',");
+                }
+            }
+            sb.delete(sb.length() - 1, sb.length());
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 拼接IN条件值
+     * 
+     * @param str
+     * @return
+     */
+    public static String getInCond(String[] values) {
+        StringBuffer sb = new StringBuffer();
+        if (values != null && values.length > 0) {
+            for (String value : values) {
+                if (value != null) {
+                    sb.append("'").append(value).append("',");
+                }
+            }
+            sb.delete(sb.length() - 1, sb.length());
+        }
+        return sb.toString();
     }
 }
