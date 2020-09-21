@@ -1,6 +1,7 @@
 package com.easyway.business.framework.util;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,33 +10,33 @@ import java.util.Date;
 public final class DateUtil {
 
     // 默认日期格式
-    public static final String           YMD_FORMAT     = "yyyy-MM-dd";
+    public static final String           DATE_FORMAT            = "yyyy-MM-dd";
     // 默认时间格式
-    public static final String           YMDHMS_FORMAT  = "yyyy-MM-dd HH:mm:ss";
-    public static final String           YMDHM_FORMAT   = "yyyy-MM-dd HH:mm";
-    public static final String           HMS_FORMAT     = "HH:mm:ss";
-    
-    public static final SimpleDateFormat FORMAT_YMD           = new SimpleDateFormat(YMD_FORMAT);
-    public static final SimpleDateFormat FORMAT_YMDHM         = new SimpleDateFormat(YMDHM_FORMAT);
-    public static final SimpleDateFormat FORMAT_YMDHMS        = new SimpleDateFormat(YMDHMS_FORMAT);
+    public static final String           DATETIME_FORMAT        = "yyyy-MM-dd HH:mm:ss";
+    public static final String           DATETIME_MINUTE_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String           TIME_FORMAT            = "HH:mm:ss";
 
-    public static final SimpleDateFormat FORMAT_SHORT_DATE    = new SimpleDateFormat("yyyyMMdd");
-    public static final SimpleDateFormat FORMAT_LONG_DATETIME = new SimpleDateFormat("yyyyMMddHHmmss");
-    
-    public static final long             MS             = 1L;
-    public static final long             SECOND_MS      = 1000L;// 一秒钟的毫秒数
-    public static final long             MINUTE_MS      = 60000L;// 一分钟的毫秒数
-    public static final long             HOUR_MS        = 3600000L;// 一小时的毫秒数
-    public static final long             DAY_MS         = 86400000L;// 一天的毫秒数
-    
+    public static final SimpleDateFormat NORM_YMD_FORMAT        = new SimpleDateFormat(DATE_FORMAT);
+    public static final SimpleDateFormat NORM_YMDHM_FORMAT      = new SimpleDateFormat(DATETIME_MINUTE_FORMAT);
+    public static final SimpleDateFormat NORM_YMDHMS_FORMAT     = new SimpleDateFormat(DATETIME_FORMAT);
+    public static final SimpleDateFormat NORM_TIME_FORMAT       = new SimpleDateFormat(TIME_FORMAT);
+
+    public static final SimpleDateFormat FORMAT_SHORT_DATE      = new SimpleDateFormat("yyyyMMdd");
+    public static final SimpleDateFormat FORMAT_LONG_DATETIME   = new SimpleDateFormat("yyyyMMddHHmmss");
+
+    public static final long             MS                     = 1L;
+    public static final long             SECOND_MS              = 1000L; // 一秒钟的毫秒数
+    public static final long             MINUTE_MS              = 60000L; // 一分钟的毫秒数
+    public static final long             HOUR_MS                = 3600000L; // 一小时的毫秒数
+    public static final long             DAY_MS                 = 86400000L; // 一天的毫秒数
+
     /**
-     * 
      * @return
      */
     public static Timestamp currentTime() {
         return new Timestamp(System.currentTimeMillis());
     }
-    
+
     /**
      * 获取当前日期
      * 
@@ -46,21 +47,11 @@ public final class DateUtil {
     }
 
     /**
-     * 获取当前日期
-     * 
-     * @return
-     * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
-     */
-    public static Date now() {
-        return currentDate();
-    }
-    
-    /**
      * @return
      * @description 得到当前时间 yyyy-MM-dd
      */
     public static String getCurrentDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat(YMD_FORMAT);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         String createTime = formatter.format(new Date());
         return createTime;
     }
@@ -70,11 +61,29 @@ public final class DateUtil {
      * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
      */
     public static String getCurrentTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat(YMDHMS_FORMAT);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATETIME_FORMAT);
         String createTime = formatter.format(new Date());
         return createTime;
     }
-    
+
+    /**
+     * 当前时间，格式 yyyy-MM-dd HH:mm:ss
+     *
+     * @return 当前时间的标准形式字符串
+     */
+    public static String now() {
+        return formatDateTime(new Date());
+    }
+
+    /**
+     * 当前日期，格式 yyyy-MM-dd
+     *
+     * @return 当前日期的标准形式字符串
+     */
+    public static String today() {
+        return formatDate(new Date());
+    }
+
     /**
      * 短日期格式字串yyyyMMdd
      * 
@@ -93,15 +102,29 @@ public final class DateUtil {
     public static String getLongDateStr() {
         return FORMAT_LONG_DATETIME.format(new Date());
     }
-    
+
     /**
-     * 日期格式化
-     * 
-     * @param date
-     * @param format
-     * @return
+     * 根据特定格式格式化日期
+     *
+     * @param date 被格式化的日期
+     * @param format {@link SimpleDateFormat}
+     * @return 格式化后的字符串
      */
-    public static Date formatDate(String date, String format) {
+    public static String format(Date date, DateFormat format) {
+        if (null == format || null == date) {
+            return null;
+        }
+        return format.format(date);
+    }
+
+    /**
+     * 根据特定格式格式化日期
+     *
+     * @param date 被格式化后的字符串
+     * @param format {@link SimpleDateFormat}
+     * @return 格式化的日期
+     */
+    public static Date format(String date, String format) {
         try {
             return new SimpleDateFormat(format).parse(date);
         } catch (ParseException e) {
@@ -109,22 +132,77 @@ public final class DateUtil {
         }
         return null;
     }
-    
+
     /**
-     * 日期格式化
-     * 
-     * @param date
-     * @param pattern
-     * @return
+     * 格式化日期时间<br>
+     * 格式 yyyy-MM-dd HH:mm:ss
+     *
+     * @param date 被格式化的日期
+     * @return 格式化后的日期
      */
-    public static String formatDate(Date date, String pattern) {
-        if (date == null) {
+    public static String formatDateTime(Date date) {
+        if (null == date) {
             return null;
         }
-        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-        return formatter.format(date);
+        return NORM_YMDHMS_FORMAT.format(date);
     }
-    
+
+    /**
+     * 格式化日期部分（不包括时间）<br>
+     * 格式 yyyy-MM-dd
+     *
+     * @param date 被格式化的日期
+     * @return 格式化后的字符串
+     */
+    public static String formatDate(Date date) {
+        if (null == date) {
+            return null;
+        }
+        return NORM_YMD_FORMAT.format(date);
+    }
+
+    /**
+     * 格式化时间<br>
+     * 格式 HH:mm:ss
+     *
+     * @param date 被格式化的日期
+     * @return 格式化后的字符串
+     */
+    public static String formatTime(Date date) {
+        if (null == date) {
+            return null;
+        }
+        return NORM_TIME_FORMAT.format(date);
+    }
+
+    /**
+     * 格式化日期时间<br>
+     * 格式 yyyy-MM-dd HH:mm:ss
+     *
+     * @param date 被格式化的日期
+     * @return 格式化后的日期
+     */
+    public static Date formatDateTime(String date) {
+        if (null == date) {
+            return null;
+        }
+        return format(date, DATETIME_FORMAT);
+    }
+
+    /**
+     * 格式化日期部分（不包括时间）<br>
+     * 格式 yyyy-MM-dd
+     *
+     * @param date 被格式化的日期
+     * @return 格式化后的字符串
+     */
+    public static Date formatDate(String date) {
+        if (null == date) {
+            return null;
+        }
+        return format(date, DATE_FORMAT);
+    }
+
     /**
      * 时间转换为字符串yyyy-MM-dd
      * 
@@ -135,9 +213,9 @@ public final class DateUtil {
         if (date == null) {
             return null;
         }
-        return FORMAT_YMD.format(date);
+        return NORM_YMD_FORMAT.format(date);
     }
-    
+
     /**
      * 时间转换为字符串yyyy-MM-dd HH:mm
      * 
@@ -148,9 +226,9 @@ public final class DateUtil {
         if (date == null) {
             return null;
         }
-        return FORMAT_YMDHM.format(date);
+        return NORM_YMDHM_FORMAT.format(date);
     }
-    
+
     /**
      * 时间转换为字符串yyyy-MM-dd HH:mm:ss
      * 
@@ -161,7 +239,7 @@ public final class DateUtil {
         if (date == null) {
             return null;
         }
-        return FORMAT_YMDHMS.format(date);
+        return NORM_YMDHMS_FORMAT.format(date);
     }
 
     /**
@@ -176,7 +254,7 @@ public final class DateUtil {
         Date date = c.getTime();
         return ymdhmsFormat(date);
     }
-    
+
     /**
      * 将日期字符串转化为日期。失败返回null。
      * 
@@ -194,7 +272,7 @@ public final class DateUtil {
         }
         return myDate;
     }
-    
+
     /**
      * 将日期转化为日期字符串。失败返回null。
      * 
@@ -212,7 +290,7 @@ public final class DateUtil {
         }
         return dateString;
     }
-    
+
     /**
      * 比较两个时间数相差多少分钟
      * 
@@ -224,7 +302,7 @@ public final class DateUtil {
         long diff = minuend.getTime() - subtrahend.getTime();
         return diff / diffField;
     }
-    
+
     /**
      * 根据日期增加天数
      * 
@@ -240,14 +318,15 @@ public final class DateUtil {
     }
 
     /**
-     * 获取N天后的时间
+     * 获取指定日期N天后的时间
      * 
      * @param somedate
      * @param day
      * @return
      */
     public static Date getNextDay(Date somedate, int day) {
-        if (somedate == null) return null;
+        if (somedate == null)
+            return null;
         Calendar cal = Calendar.getInstance();
         cal.setTime(somedate);
         cal.add(Calendar.DAY_OF_MONTH, day);
@@ -258,13 +337,19 @@ public final class DateUtil {
         return new Date(cal.getTime().getTime());
     }
 
+    /**
+     * 获取N天后的时间
+     * 
+     * @param day
+     * @return
+     */
     public static Timestamp getNextDay(int day) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DAY_OF_MONTH, day);
         return new Timestamp(cal.getTime().getTime());
     }
-    
+
     /**
      * 获得星期几(周日为1，周六为7)
      * 
