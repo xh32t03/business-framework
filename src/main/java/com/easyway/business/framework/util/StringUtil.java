@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *  这个类中的每个方法都可以“安全”地处理<code>null</code>，而不会抛出<code>NullPointerException</code>。
  * </p>
  * 
- * @author Michael Zhou
+ * @author xl.liu
  */
 public class StringUtil {
 
