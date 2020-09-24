@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import org.apache.commons.lang.SerializationException;
 
 public final class SerializeUtil {
 
@@ -20,7 +19,7 @@ public final class SerializeUtil {
             byte[] bytes = baos.toByteArray();
             return bytes;
         } catch (Exception e) {
-            throw new SerializationException(e);
+            throw new RuntimeException(e);
         } finally {
             if (oos != null) {
                 try {
@@ -42,7 +41,7 @@ public final class SerializeUtil {
             ois = new ObjectInputStream(bais);
             return ois.readObject();
         } catch (Exception e) {
-            throw new SerializationException(e);
+            throw new RuntimeException(e);
         } finally {
             if (ois != null) {
                 try {
