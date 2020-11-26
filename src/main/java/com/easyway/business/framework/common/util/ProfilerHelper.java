@@ -10,9 +10,9 @@ import java.util.List;
  * 
  * @author liuxl
  */
+@SuppressWarnings("all")
 public class ProfilerHelper {
 
-    @SuppressWarnings("rawtypes")
     private static final ThreadLocal entryStack = new ThreadLocal();
 
     /**
@@ -27,7 +27,6 @@ public class ProfilerHelper {
      *
      * @param message 第一个entry的信息
      */
-    @SuppressWarnings("unchecked")
     public static void start(String message) {
         entryStack.set(new Entry(message, null, null));
     }
@@ -37,7 +36,6 @@ public class ProfilerHelper {
      *
      * @param message 第一个entry的信息
      */
-    @SuppressWarnings("unchecked")
     public static void start(Message message) {
         entryStack.set(new Entry(message, null, null));
     }
@@ -49,7 +47,6 @@ public class ProfilerHelper {
      * 清除以后必须再次调用<code>start</code>方可重新计时。
      * </p>
      */
-    @SuppressWarnings("unchecked")
     public static void reset() {
         entryStack.set(null);
     }
@@ -176,7 +173,6 @@ public class ProfilerHelper {
      * 代表一个计时单元。
      */
     public static final class Entry {
-        @SuppressWarnings("rawtypes")
         private final List   subEntries = new ArrayList(4);
         private final Object message;
         private final Entry  parentEntry;
@@ -337,7 +333,6 @@ public class ProfilerHelper {
          *
          * @return 所有子entries的列表（不可更改）
          */
-        @SuppressWarnings({ "unchecked", "rawtypes" })
         public List getSubEntries() {
             return Collections.unmodifiableList(subEntries);
         }
@@ -363,7 +358,6 @@ public class ProfilerHelper {
          *
          * @param message 子entry的信息
          */
-        @SuppressWarnings("unchecked")
         private void enterSubEntry(Object message) {
             Entry subEntry = new Entry(message, this, firstEntry);
             subEntries.add(subEntry);
