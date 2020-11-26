@@ -77,13 +77,6 @@ public class ConditionQuery {
         this.criteriaWithListValue.add(condition);
     }
 
-    public void combineCondition(ConditionQuery imp) {
-        List<Condition> list = imp.getAllCondition();
-        for (Condition condition : list) {
-            add(condition);
-        }
-    }
-
     public List<Condition> getAllCondition() {
         List<Condition> ret = new ArrayList<Condition>();
         ret.addAll(this.criteriaWithBetweenValue);
