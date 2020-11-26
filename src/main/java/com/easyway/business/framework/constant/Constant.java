@@ -15,4 +15,13 @@ public final class Constant {
     public static final DateFormat NORM_DATETIME_FORMAT = new SimpleDateFormat(FORMAT_YMDHMS);
 
     public static final DateFormat NORM_DATE_FORMAT     = new SimpleDateFormat(FORMAT_YMD);
+
+    public static final String     EQUAL                = "=";
+    public static final String     NOT_EQUAL            = "!=";
+    public static final String     IN                   = "in";
+    public static final String     NOT_IN               = "not in";
+    public static final String     NOT_MORE_THAN        = ">=";
+    public static final String     NOT_LESS_THAN        = "<=";
+    public static final String     GREAT_THAN           = ">";
+    public static final String     LESS_THAN            = "<";
 }
