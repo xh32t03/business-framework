@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
+import com.easyway.business.framework.constant.Constant;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
 
 public class ListValueCondition extends Condition {
@@ -17,11 +17,11 @@ public class ListValueCondition extends Condition {
     }
 	
 	public ListValueCondition(String condition, List<Object> value) {
-        this(condition, "in", value);
+        this(condition, Constant.IN, value);
     }
 	
 	public ListValueCondition(String condition, Object[] value) {
-	    this(condition, "in", value);
+	    this(condition, Constant.IN, value);
 	}
 	
 	public ListValueCondition(String condition, String equal, List<Object> value) {

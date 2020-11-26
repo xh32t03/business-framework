@@ -1,5 +1,6 @@
 package com.easyway.business.framework.mybatis.query.condition;
 
+import com.easyway.business.framework.constant.Constant;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
 
 public class SingleValueCondition extends Condition {
@@ -12,7 +13,7 @@ public class SingleValueCondition extends Condition {
     }
 	
 	public SingleValueCondition(String condition, Object value) {
-        this(condition, "=", value);
+        this(condition, Constant.EQUAL, value);
     }
 
     public SingleValueCondition(String condition, String equal, Object value) {
