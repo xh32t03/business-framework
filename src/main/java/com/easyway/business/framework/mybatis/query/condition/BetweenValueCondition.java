@@ -17,6 +17,11 @@ public class BetweenValueCondition extends Condition {
 		this.endValue = endValue;
 	}
 
+	public BetweenValueCondition(String tableAlias, String column, Object beginValue, Object endValue) {
+        this(column, beginValue, endValue);
+        this.tableAlias = tableAlias;
+    }
+	
 	public String getColumn() {
 		return this.column;
 	}
