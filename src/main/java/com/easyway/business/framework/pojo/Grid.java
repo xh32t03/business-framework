@@ -11,7 +11,9 @@ public class Grid extends Page {
     private String sortname;
     private String sortorder;
 
-    public Grid() {}
+    public Grid() {
+        
+    }
 
     public Grid(Page page) {
         super(page);
