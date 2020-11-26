@@ -2,7 +2,7 @@ package com.easyway.business.framework.mybatis.query.condition;
 
 import java.util.List;
 
-public class ConditionFactory {
+public final class ConditionFactory {
     public static Condition buildSqlCondition(String sql) {
         return new WithoutValueCondition(sql);
     }
