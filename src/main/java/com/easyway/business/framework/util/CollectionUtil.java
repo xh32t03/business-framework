@@ -1,10 +1,12 @@
 package com.easyway.business.framework.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("all")
 public class CollectionUtil {
@@ -229,5 +231,25 @@ public class CollectionUtil {
      */
     public static String[] listToArray(List<String> list) {
         return ListUtil.listToArray(list);
+    }
+    
+    /**
+     * 将逗号分隔的字符串转list
+     * 
+     * @param str
+     * @return
+     */
+    public static List<String> strToList(String str) {
+        return ListUtil.strToList(str);
+    }
+
+    /**
+     * 将逗号分隔的字符串转array
+     * 
+     * @param str
+     * @return
+     */
+    public static String[] strToArray(String str) {
+        return ListUtil.strToArray(str);
     }
 }

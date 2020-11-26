@@ -70,20 +70,20 @@ public class ConvertUtil {
      * @param maps
      * @param clazz
      * @return
-     * @throws InstantiationException
-     * @throws IllegalAccessException
      */
-    public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz)
-            throws InstantiationException, IllegalAccessException {
+    public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
         List<T> list = new ArrayList<T>();
         if (maps != null && maps.size() > 0) {
             Map<String, Object> map = null;
             T bean = null;
             for (int i = 0, size = maps.size(); i < size; i++) {
                 map = maps.get(i);
-                bean = clazz.newInstance();
-                mapToBean(map, bean);
-                list.add(bean);
+                try {
+                    bean = clazz.newInstance();
+                    mapToBean(map, bean);
+                    list.add(bean);
+                } catch (Exception e) {
+                }
             }
         }
         return list;
