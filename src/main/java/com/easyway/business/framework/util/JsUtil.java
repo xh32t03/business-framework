@@ -16,22 +16,21 @@ public class JsUtil {
 	/**
 	 * 是否为jquery ajax异步请求验证
 	 * 
-	 * @return
+	 * @return boolean
 	 */
-	public static boolean validateJqueryAjax(HttpServletRequest request) {
-		if (null == request) {
-			return false;
-		}
-		return JsUtil.JQUERY_AJAX_HEADER_VALUE.equals(request
-				.getHeader(JsUtil.JQUERY_AJAX_HEADER_NAME));
-	}
+    public static boolean validateJqueryAjax(HttpServletRequest request) {
+        if (null == request) {
+            return false;
+        }
+        return JsUtil.JQUERY_AJAX_HEADER_VALUE.equals(request.getHeader(JsUtil.JQUERY_AJAX_HEADER_NAME));
+    }
 
 	/**
 	 * 将js脚本作为response数据响应
 	 * 
 	 * @param response
 	 * @param jsScriptStr
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean printJsScript(HttpServletResponse response,
 			String jsScriptStr) {

@@ -31,7 +31,9 @@ public final class DateUtil {
     public static final long             DAY_MS                 = 86400000L; // 一天的毫秒数
 
     /**
-     * @return
+     * 获取当前日期
+     * 
+     * @return Timestamp
      */
     public static Timestamp currentTime() {
         return new Timestamp(System.currentTimeMillis());
@@ -40,14 +42,14 @@ public final class DateUtil {
     /**
      * 获取当前日期
      * 
-     * @return
+     * @return Date
      */
     public static Date currentDate() {
         return new Date();
     }
 
     /**
-     * @return
+     * @return String
      * @description 得到当前时间 yyyy-MM-dd
      */
     public static String getCurrentDate() {
@@ -57,7 +59,7 @@ public final class DateUtil {
     }
 
     /**
-     * @return
+     * @return String
      * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
      */
     public static String getCurrentTime() {
@@ -88,7 +90,7 @@ public final class DateUtil {
      * 短日期格式字串yyyyMMdd
      * 
      * @param date
-     * @return
+     * @return String
      */
     public static String getShortDateStr() {
         return FORMAT_SHORT_DATE.format(new Date());
@@ -97,7 +99,7 @@ public final class DateUtil {
     /**
      * 长日期格式字串yyyyMMddHHmmss
      * 
-     * @return
+     * @return String
      */
     public static String getLongDateStr() {
         return FORMAT_LONG_DATETIME.format(new Date());
@@ -207,7 +209,7 @@ public final class DateUtil {
      * 时间转换为字符串yyyy-MM-dd
      * 
      * @param date
-     * @return
+     * @return String
      */
     public static String ymdFormat(Date date) {
         if (date == null) {
@@ -220,7 +222,7 @@ public final class DateUtil {
      * 时间转换为字符串yyyy-MM-dd HH:mm
      * 
      * @param date
-     * @return
+     * @return String
      */
     public static String ymdhmFormat(Date date) {
         if (date == null) {
@@ -233,7 +235,7 @@ public final class DateUtil {
      * 时间转换为字符串yyyy-MM-dd HH:mm:ss
      * 
      * @param date
-     * @return
+     * @return String
      */
     public static String ymdhmsFormat(Date date) {
         if (date == null) {
@@ -246,7 +248,7 @@ public final class DateUtil {
      * 毫秒数转化为日期
      * 
      * @param millionSeconds
-     * @return
+     * @return String
      */
     public static String ymdhmsFormat(long millionSeconds) {
         Calendar c = Calendar.getInstance();
@@ -296,7 +298,7 @@ public final class DateUtil {
      * 
      * @param begin
      * @param end
-     * @return
+     * @return 分钟
      */
     public static long dateDiff(Date subtrahend, Date minuend, long diffField) {
         long diff = minuend.getTime() - subtrahend.getTime();
@@ -322,7 +324,7 @@ public final class DateUtil {
      * 
      * @param somedate
      * @param day
-     * @return
+     * @return Date
      */
     public static Date getNextDay(Date somedate, int day) {
         if (somedate == null)
@@ -341,7 +343,7 @@ public final class DateUtil {
      * 获取N天后的时间
      * 
      * @param day
-     * @return
+     * @return Timestamp
      */
     public static Timestamp getNextDay(int day) {
         Calendar cal = Calendar.getInstance();
@@ -354,7 +356,7 @@ public final class DateUtil {
      * 获得星期几(周日为1，周六为7)
      * 
      * @param date 给定日期
-     * @return
+     * @return int
      */
     public static int getDay(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -366,7 +368,7 @@ public final class DateUtil {
      * 获得星期几（中文）
      * 
      * @param date
-     * @return
+     * @return String
      */
     public static String getDayCN(Date date) {
         Calendar calendar = Calendar.getInstance();

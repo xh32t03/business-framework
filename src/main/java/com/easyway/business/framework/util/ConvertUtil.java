@@ -18,7 +18,7 @@ public class ConvertUtil {
      * 将对象装换为map
      * 
      * @param bean
-     * @return
+     * @return <T>
      */
     public static <T> Map<String, Object> beanToMap(T bean) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -36,7 +36,7 @@ public class ConvertUtil {
      * 
      * @param map
      * @param bean
-     * @return
+     * @return <T>
      */
     public static <T> T mapToBean(Map<String, Object> map, T bean) {
         BeanMap beanMap = BeanMap.create(bean);
@@ -48,7 +48,6 @@ public class ConvertUtil {
      * 将List<T>转换为List<Map<String, Object>>
      * 
      * @param objList
-     * @return
      */
     public static <T> List<Map<String, Object>> objectsToMaps(List<T> objList) {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -69,7 +68,6 @@ public class ConvertUtil {
      * 
      * @param maps
      * @param clazz
-     * @return
      */
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
         List<T> list = new ArrayList<T>();
@@ -95,7 +93,6 @@ public class ConvertUtil {
      *              获取到对象中属性为null的属性名
      *              </P>
      * @param source 要拷贝的对象
-     * @return
      */
     @SuppressWarnings("rawtypes")
     public static String[] getNullPropertyNames(Object source) {

@@ -122,7 +122,7 @@ public class StringUtil {
     /**
      * @param str
      * @param matchs
-     * @return
+     * @return boolean
      */
     public static final boolean containsAny(String str, String[] matchs) {
         if (matchs == null || matchs.length <= 0)
@@ -606,8 +606,8 @@ public class StringUtil {
     /**
      * 去掉字符串数组前后置空格
      * 
-     * @param in 字符串数组
-     * @return String 字符串数组
+     * @param arr 字符串数组
+     * @return String[] 字符串数组
      */
     public static String[] trim(String[] arr) {
         if (arr == null || arr.length < 1) {
@@ -879,7 +879,7 @@ public class StringUtil {
      * 
      * @param str
      * @param index
-     * @return
+     * @return String
      */
     public static String toUpperCase(String str, int index) {
         if (str == null) {

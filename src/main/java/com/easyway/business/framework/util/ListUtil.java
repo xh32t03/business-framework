@@ -19,7 +19,7 @@ public final class ListUtil {
      * 将一个list均分成n个list,主要通过偏移量来实现的
      * 
      * @param source
-     * @return
+     * @return List<List<T>>
      */
     public static <T> List<List<T>> averageAssign(List<T> source, int n) {
         List<List<T>> result = new ArrayList<List<T>>();
@@ -83,7 +83,7 @@ public final class ListUtil {
      * Java8 数组转为List
      * 
      * @param arrays
-     * @return
+     * @return List<String>
      */
     public static List<String> arrayToList(String[] arrays) {
         List<String> result = Stream.of(arrays).filter(Objects::nonNull).collect(Collectors.toList());
@@ -94,7 +94,7 @@ public final class ListUtil {
      * Java8 List转为数组
      * 
      * @param list
-     * @return
+     * @return String[]
      */
     public static String[] listToArray(List<String> list) {
         if (list != null && !list.isEmpty()) {
@@ -140,7 +140,7 @@ public final class ListUtil {
      * 将逗号分隔的字符串转list
      * 
      * @param str
-     * @return
+     * @return List<String>
      */
     public static List<String> strToList(String str) {
         if (StringUtil.checkIsNotEmpty(str)) {
@@ -154,7 +154,7 @@ public final class ListUtil {
      * 将逗号分隔的字符串转array
      * 
      * @param str
-     * @return
+     * @return String[]
      */
     public static String[] strToArray(String str) {
         if (StringUtil.checkIsNotEmpty(str)) {
@@ -168,7 +168,7 @@ public final class ListUtil {
      * 
      * @param list
      * @param split
-     * @return
+     * @return String
      */
     public static String convertArrayToSplitStr(List<String> list, String split) {
         StringBuffer result = new StringBuffer();
@@ -185,7 +185,7 @@ public final class ListUtil {
      * 拼接IN条件值
      * 
      * @param str
-     * @return
+     * @return String
      */
     public static String getInCond(String str) {
         String[] strArr = str.split(",");
@@ -204,7 +204,7 @@ public final class ListUtil {
      * 拼接IN条件值
      * 
      * @param str
-     * @return
+     * @return String
      */
     public static String getInCond(List<String> list) {
         StringBuffer sb = new StringBuffer();
@@ -223,7 +223,7 @@ public final class ListUtil {
      * 拼接IN条件值
      * 
      * @param str
-     * @return
+     * @return String
      */
     public static String getInCond(String[] values) {
         StringBuffer sb = new StringBuffer();
