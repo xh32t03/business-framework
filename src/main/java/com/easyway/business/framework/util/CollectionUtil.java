@@ -69,7 +69,7 @@ public class CollectionUtil {
      * 
      * @param str
      * @param list
-     * @return
+     * @return boolean
      */
     public static boolean strInList(String str, List<String> list) {
         if (isEmpty(list)) {
@@ -143,7 +143,6 @@ public class CollectionUtil {
      * @param <T>
      * @param collections
      * @param object
-     * @return
      */
     public static <T extends Comparable<? super T>> List<T> equal(Collection<T> collections, T object) {
         List<T> returnList = new ArrayList<T>();
@@ -160,7 +159,6 @@ public class CollectionUtil {
      * 
      * @param coll1
      * @param coll2
-     * @return
      */
     public static <T> boolean containsAll(final Collection<T> coll1, final Collection<T> coll2) {
         // size为0
@@ -193,7 +191,7 @@ public class CollectionUtil {
      * 
      * @param list
      * @param split
-     * @return
+     * @return String
      */
     public static String convertArrayToSplitStr(List<String> list, String split) {
         return ListUtil.convertArrayToSplitStr(list, split);
@@ -217,7 +215,7 @@ public class CollectionUtil {
      * Java8 数组转为List
      * 
      * @param arrays
-     * @return
+     * @return List<String>
      */
     public static List<String> arrayToList(String[] arrays) {
         return ListUtil.arrayToList(arrays);
@@ -227,7 +225,7 @@ public class CollectionUtil {
      * Java8 List转为数组
      * 
      * @param list
-     * @return
+     * @return String[]
      */
     public static String[] listToArray(List<String> list) {
         return ListUtil.listToArray(list);
@@ -237,7 +235,7 @@ public class CollectionUtil {
      * 将逗号分隔的字符串转list
      * 
      * @param str
-     * @return
+     * @return List<String>
      */
     public static List<String> strToList(String str) {
         return ListUtil.strToList(str);
@@ -247,7 +245,7 @@ public class CollectionUtil {
      * 将逗号分隔的字符串转array
      * 
      * @param str
-     * @return
+     * @return String[]
      */
     public static String[] strToArray(String str) {
         return ListUtil.strToArray(str);

@@ -10,21 +10,21 @@ public interface EnumBase {
     /**
      * 获取枚举名
      * 
-     * @return
+     * @return String
      */
     public String code();
 
     /**
      * 获取枚举消息
      * 
-     * @return
+     * @return String
      */
     public String message();
 
     /**
      * 获取枚举值
      * 
-     * @return
+     * @return Number
      */
     public Number value();
 }

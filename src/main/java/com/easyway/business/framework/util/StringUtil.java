@@ -897,7 +897,7 @@ public class StringUtil {
      * 首字母大写
      * 
      * @param str
-     * @return
+     * @return String
      */
     public static String toFirstCharUpperCase(String str) {
         return toUpperCase(str, 0);
@@ -1150,7 +1150,7 @@ public class StringUtil {
      * 防止特殊字符(‘)sql注入
      * 
      * @param sqlParam
-     * @return
+     * @return String
      */
     public static String formatBaseQueryParam(String sqlParam) {
         return sqlParam.replace("'", "''");
@@ -1160,7 +1160,7 @@ public class StringUtil {
      * Like 查询条件sql参数特殊字符(',[,%,_,^)转译
      * 
      * @param sqlParam
-     * @return
+     * @return String
      */
     public static String formatLikeQueryParam(String sqlParam) {
         return sqlParam.replace("'", "''").replace("[", "[[]").replace("%", "[%]").replace("_", "[_]").replace("^",
@@ -1172,7 +1172,7 @@ public class StringUtil {
      * 
      * @param str 待编码字符串
      * @param enc 编码格式
-     * @return
+     * @return String
      */
     public static String encode(String str, String enc) {
         if (str == null) {
@@ -1191,7 +1191,7 @@ public class StringUtil {
      * 
      * @param str 待解码字符串
      * @param enc 解码格式
-     * @return
+     * @return String
      */
     public static String decode(String str, String enc) {
         if (str == null) {

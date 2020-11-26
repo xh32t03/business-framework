@@ -61,7 +61,7 @@ public enum BaseResultCodeEnum implements EnumBase {
      * 通过枚举<code>code</code>获得枚举。
      * 
      * @param code 枚举编号
-     * @return
+     * @return BaseResultCodeEnum
      */
     public static BaseResultCodeEnum getResultCodeEnumByCode(String code) {
         for (BaseResultCodeEnum param : values()) {

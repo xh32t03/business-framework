@@ -102,8 +102,8 @@ public class ArrayUtil {
      * @param defaultArray 默认数组
      * @return 数组本身或默认数组
      */
-    public static <T, S extends T> T defaultIfEmptyArray(T array, S defaultValue) {
-        return isEmptyArray(array) ? defaultValue : array;
+    public static <T, S extends T> T defaultIfEmptyArray(T array, S defaultArray) {
+        return isEmptyArray(array) ? defaultArray : array;
     }
 
     // ==========================================================================

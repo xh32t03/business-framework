@@ -17,7 +17,7 @@ public interface SchDao<T extends BasePojo> {
      * 根据主键ID获得数据库对应记录
      * 
      * @param id
-     * @return
+     * @return T
      */
     public T get(Serializable id);
 
@@ -25,7 +25,7 @@ public interface SchDao<T extends BasePojo> {
      * 根据条件查询数据库记录列表
      * 
      * @param query
-     * @return
+     * @return List<T>
      */
     public List<T> query(ConditionQuery query);
 
@@ -33,7 +33,7 @@ public interface SchDao<T extends BasePojo> {
      * 根据条件查询数据库记录条数
      * 
      * @param query
-     * @return
+     * @return int
      */
     public int queryCnt(ConditionQuery query);
 }

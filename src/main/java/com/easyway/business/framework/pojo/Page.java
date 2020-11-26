@@ -72,7 +72,7 @@ public class Page extends QueryPojo {
     /**
      * 查询偏移量
      * 
-     * @return
+     * @return int
      */
     @JsonIgnore
     @NotJsonData
