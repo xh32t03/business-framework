@@ -47,20 +47,6 @@ public class ConditionQuery {
         this.criteriaWithListValue = criteriaWithListValue;
     }
 
-    public void addAll(List<Condition> list) {
-        if (list != null) {
-            for (Condition condition : list) {
-                add(condition);
-            }
-        }
-    }
-
-    public void add(Condition condition) {
-        if (condition != null) {
-            condition.addConditionToQuery(this);
-        }
-    }
-
     public void addBetweenValueCondition(Condition condition) {
         this.criteriaWithBetweenValue.add(condition);
     }
@@ -77,6 +63,20 @@ public class ConditionQuery {
         this.criteriaWithListValue.add(condition);
     }
 
+    public void add(Condition condition) {
+        if (condition != null) {
+            condition.addConditionToQuery(this);
+        }
+    }
+
+    public void addAll(List<Condition> list) {
+        if (list != null) {
+            for (Condition condition : list) {
+                add(condition);
+            }
+        }
+    }
+    
     public List<Condition> getAllCondition() {
         List<Condition> ret = new ArrayList<Condition>();
         ret.addAll(this.criteriaWithBetweenValue);
