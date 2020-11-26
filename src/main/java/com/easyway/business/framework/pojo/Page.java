@@ -20,10 +20,11 @@ public class Page extends QueryPojo {
     // 总记录数
     private int     total;
 
-    public Page(){
+    public Page() {
+        
     }
 
-    public Page(Page page){
+    public Page(Page page) {
         this.pageSize = page.pageSize;
         this.pageNum = page.pageNum;
         this.total = page.total;
@@ -75,7 +76,7 @@ public class Page extends QueryPojo {
      */
     @JsonIgnore
     @NotJsonData
-    @JSONField(serialize=false)
+    @JSONField(serialize = false)
     public int getPageOffset() {
         // 如果当前页小于第一页，则停留在第一页
         this.pageNum = this.pageNum < 1 ? 1 : this.pageNum;
