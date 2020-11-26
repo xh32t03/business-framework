@@ -67,15 +67,6 @@ public final class DateUtil {
     }
 
     /**
-     * 当前时间，格式 yyyy-MM-dd HH:mm:ss
-     *
-     * @return 当前时间的标准形式字符串
-     */
-    public static String now() {
-        return formatDateTime(new Date());
-    }
-
-    /**
      * 当前日期，格式 yyyy-MM-dd
      *
      * @return 当前日期的标准形式字符串
@@ -84,6 +75,15 @@ public final class DateUtil {
         return formatDate(new Date());
     }
 
+    /**
+     * 当前时间，格式 yyyy-MM-dd HH:mm:ss
+     *
+     * @return 当前时间的标准形式字符串
+     */
+    public static String now() {
+        return formatDateTime(new Date());
+    }
+    
     /**
      * 短日期格式字串yyyyMMdd
      * 
