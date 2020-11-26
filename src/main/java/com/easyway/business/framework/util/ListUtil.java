@@ -203,7 +203,7 @@ public final class ListUtil {
     /**
      * 拼接IN条件值
      * 
-     * @param str
+     * @param list
      * @return String
      */
     public static String getInCond(List<String> list) {
@@ -222,7 +222,7 @@ public final class ListUtil {
     /**
      * 拼接IN条件值
      * 
-     * @param str
+     * @param values
      * @return String
      */
     public static String getInCond(String[] values) {

@@ -49,8 +49,7 @@ public final class DateUtil {
     }
 
     /**
-     * @return String
-     * @description 得到当前时间 yyyy-MM-dd
+     * @return 得到当前时间 yyyy-MM-dd
      */
     public static String getCurrentDate() {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
@@ -59,8 +58,7 @@ public final class DateUtil {
     }
 
     /**
-     * @return String
-     * @description 得到当前时间 yyyy-MM-dd HH:mm:ss
+     * @return 得到当前时间 yyyy-MM-dd HH:mm:ss
      */
     public static String getCurrentTime() {
         SimpleDateFormat formatter = new SimpleDateFormat(DATETIME_FORMAT);
@@ -296,8 +294,9 @@ public final class DateUtil {
     /**
      * 比较两个时间数相差多少分钟
      * 
-     * @param begin
-     * @param end
+     * @param subtrahend
+     * @param minuend
+     * @param diffField
      * @return 分钟
      */
     public static long dateDiff(Date subtrahend, Date minuend, long diffField) {
@@ -308,8 +307,8 @@ public final class DateUtil {
     /**
      * 根据日期增加天数
      * 
-     * @param date: 给定的日期
-     * @param days: 天数
+     * @param date 给定的日期
+     * @param day 天数
      * @return 返回Date对象
      */
     public static Date dayAdd(Date date, int days) {

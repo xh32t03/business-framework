@@ -88,10 +88,10 @@ public class ConvertUtil {
     }
 
     /**
-     * @Description
-     *              <p>
-     *              获取到对象中属性为null的属性名
-     *              </P>
+     * <p>
+     * 获取到对象中属性为null的属性名
+     * </P>
+     * 
      * @param source 要拷贝的对象
      */
     @SuppressWarnings("rawtypes")
@@ -123,10 +123,10 @@ public class ConvertUtil {
     }
 
     /**
-     * @Description
-     *              <p>
-     *              拷贝非空对象属性值
-     *              </P>
+     * <p>
+     * 拷贝非空对象属性值
+     * </P>
+     * 
      * @param source 源对象
      * @param target 目标对象
      */
