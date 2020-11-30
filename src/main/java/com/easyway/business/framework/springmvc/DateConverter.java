@@ -1,4 +1,4 @@
-package com.easyway.business.framework.springmvc.handler;
+package com.easyway.business.framework.springmvc;
 
 import java.util.Date;
 import org.slf4j.Logger;
@@ -15,7 +15,7 @@ import com.easyway.business.framework.constant.Constant;
        class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
        <property name="converters" >
            <list>
-               <bean class="com.easyway.business.framework.springmvc.handler.DateConverter" />
+               <bean class="com.easyway.business.framework.springmvc.DateConverter" />
            </list>
        </property>
  * </bean>

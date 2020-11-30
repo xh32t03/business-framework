@@ -1,4 +1,4 @@
-package com.easyway.business.framework.springmvc.handler;
+package com.easyway.business.framework.springmvc;
 
 import java.beans.PropertyEditorSupport;
 import java.text.DateFormat;
