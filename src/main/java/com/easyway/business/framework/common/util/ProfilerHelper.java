@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 用来计算并统计线程执行时间的工具
  * 
- * @author liuxl
+ * @author xl.liu
  */
 @SuppressWarnings("all")
 public class ProfilerHelper {

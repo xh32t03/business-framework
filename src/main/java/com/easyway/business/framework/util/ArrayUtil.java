@@ -14,7 +14,7 @@ import java.util.Objects;
  * 本工具类是对JDK <code>Arrays</code>的补充。
  * </p>
  *
- * @author Michael Zhou
+ * @author xl.liu
  */
 public class ArrayUtil {
     // ==========================================================================

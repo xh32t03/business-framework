@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * 性能监控标识
  * 
- * @author liuxl
+ * @author xl.liu
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

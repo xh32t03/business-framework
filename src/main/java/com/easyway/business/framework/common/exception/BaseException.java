@@ -5,7 +5,7 @@ import com.easyway.business.framework.common.enums.EnumBase;
 /**
  * 运行时异常
  * 
- * @author liuxl
+ * @author xl.liu
  */
 public class BaseException extends RuntimeException {
 

@@ -12,8 +12,8 @@ import com.easyway.business.framework.mybatis.util.ConditionUtil;
 
 public class QueryPojo {
 
-    private Set<Condition> appendCondition = null;
-    private Map<String, Object> queryParamMap = null;
+    private Set<Condition>      appendCondition = null;
+    private Map<String, Object> queryParamMap   = null;
 
     public ConditionQuery buildConditionQuery() {
         ConditionQuery query = newConditionQuery();
@@ -41,7 +41,7 @@ public class QueryPojo {
         }
         this.queryParamMap.put(key, value);
     }
-    
+
     public void appendCondition(Condition condition) {
         if (this.appendCondition == null) {
             this.appendCondition = new HashSet<Condition>();
