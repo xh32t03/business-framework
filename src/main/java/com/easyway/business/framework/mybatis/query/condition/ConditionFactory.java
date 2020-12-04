@@ -15,6 +15,10 @@ public final class ConditionFactory {
     public static Condition buildSingleValueCondition(String tableAlias, String column, Object value) {
         return new SingleValueCondition(tableAlias, column, Constant.EQUAL, value);
     }
+    
+    public static Condition buildSingleValueCondition(String column, Object value) {
+        return new SingleValueCondition(column, value);
+    }
 
     public static Condition buildBetweenCondition(String tableAlias, String column, Object beginValue,
             Object endValue) {
