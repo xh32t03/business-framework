@@ -72,6 +72,14 @@ public final class ResultUtil {
         return new ResultBody(code, msg);
     }
     
+    public static ResultBody renderBody(EnumBase errorInfo) {
+        Assert.assertNotNull(errorInfo);
+        ResultBody resultBody = new ResultBody();
+        resultBody.setCode(errorInfo.code());
+        resultBody.setMsg(errorInfo.message());
+        return resultBody;
+    }
+
     public static ResultBody success() {
         return ResultBody.success();
     }
@@ -88,14 +96,6 @@ public final class ResultUtil {
         return new ResultBody(code, msg);
     }
 
-    public static ResultBody renderBody(EnumBase errorInfo) {
-        Assert.assertNotNull(errorInfo);
-        ResultBody resultBody = new ResultBody();
-        resultBody.setCode(errorInfo.code());
-        resultBody.setMsg(errorInfo.message());
-        return resultBody;
-    }
-    
     public static ResultBody error(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
