@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -40,6 +41,14 @@ public final class ListUtil {
         return result;
     }
 
+    /**
+     * list深度复制
+     * 
+     * @param <T>
+     * @param src
+     * @return
+     * @throws Exception
+     */
     public static <T> List<T> deepCopy(List<T> src) throws Exception {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(byteOut);
@@ -236,5 +245,19 @@ public final class ListUtil {
             sb.delete(sb.length() - 1, sb.length());
         }
         return sb.toString();
+    }
+    
+    /**
+     * 去除重复元素
+     *
+     * @param list 需要处理的list
+     * @param <T> 泛型方法
+     * @return 去重后的list
+     */
+    public static <T> List<T> removeDuplicate(List<T> list) {
+        if (list == null || list.size() == 0) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(new HashSet<>(list));
     }
 }

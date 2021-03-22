@@ -15,6 +15,53 @@ import java.util.Set;
 
 public class ConvertUtil {
     /**
+     * <p>
+     * 获取到对象中属性为null的属性名
+     * </P>
+     * 
+     * @param source 要拷贝的对象
+     */
+    @SuppressWarnings("rawtypes")
+    public static String[] getNullPropertyNames(Object source) {
+        final BeanWrapper beanWrapper = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<>();
+        Arrays.stream(pds).forEach(pd -> {
+            Object propertyValue = beanWrapper.getPropertyValue(pd.getName());
+            if (propertyValue == null) {
+                emptyNames.add(pd.getName());
+            } else {
+                if (Iterable.class.isAssignableFrom(propertyValue.getClass())) {
+                    Iterable iterable = (Iterable) propertyValue;
+                    Iterator iterator = iterable.iterator();
+                    if (!iterator.hasNext())
+                        emptyNames.add(pd.getName());
+                }
+                if (Map.class.isAssignableFrom(propertyValue.getClass())) {
+                    Map map = (Map) propertyValue;
+                    if (map.isEmpty())
+                        emptyNames.add(pd.getName());
+                }
+            }
+        });
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
+    }
+
+    /**
+     * <p>
+     * 拷贝非空对象属性值
+     * </P>
+     * 
+     * @param source 源对象
+     * @param target 目标对象
+     */
+    public static void copyProperties(Object source, Object target) {
+        BeanUtils.copyProperties(source, target, getNullPropertyNames(source));
+    }
+    
+    /**
      * 将对象装换为map
      * 
      * @param bean
@@ -87,50 +134,4 @@ public class ConvertUtil {
         return list;
     }
 
-    /**
-     * <p>
-     * 获取到对象中属性为null的属性名
-     * </P>
-     * 
-     * @param source 要拷贝的对象
-     */
-    @SuppressWarnings("rawtypes")
-    public static String[] getNullPropertyNames(Object source) {
-        final BeanWrapper beanWrapper = new BeanWrapperImpl(source);
-        java.beans.PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
-
-        Set<String> emptyNames = new HashSet<>();
-        Arrays.stream(pds).forEach(pd -> {
-            Object propertyValue = beanWrapper.getPropertyValue(pd.getName());
-            if (propertyValue == null) {
-                emptyNames.add(pd.getName());
-            } else {
-                if (Iterable.class.isAssignableFrom(propertyValue.getClass())) {
-                    Iterable iterable = (Iterable) propertyValue;
-                    Iterator iterator = iterable.iterator();
-                    if (!iterator.hasNext())
-                        emptyNames.add(pd.getName());
-                }
-                if (Map.class.isAssignableFrom(propertyValue.getClass())) {
-                    Map map = (Map) propertyValue;
-                    if (map.isEmpty())
-                        emptyNames.add(pd.getName());
-                }
-            }
-        });
-        String[] result = new String[emptyNames.size()];
-        return emptyNames.toArray(result);
-    }
-
-    /**
-     * <p>
-     * 拷贝非空对象属性值
-     * </P>
-     * 
-     * @param source 源对象
-     * @param target 目标对象
-     */
-    public static void copyProperties(Object source, Object target) {
-        BeanUtils.copyProperties(source, target, getNullPropertyNames(source));
-    }
 }
