@@ -52,6 +52,10 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
         return (T) applicationContext.getBean(name, clazz);
     }
 
+    public static Class<?> getType(String name) {
+        return applicationContext.getType(name);
+    }
+    
     private static void checkApplicationContext() {
         if (applicationContext == null) {
             throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContext");
