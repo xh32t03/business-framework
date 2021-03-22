@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 /**
  * Spring上下文
  * 
- * 在Spring配置文件中注册该工具类
- * <bean id="springContext" class="com.easyway.business.framework.springmvc.SpringContext" />
- * 
  * @author xl.liu
  */
 //@Component
