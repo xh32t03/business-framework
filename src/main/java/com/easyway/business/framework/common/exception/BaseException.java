@@ -22,7 +22,7 @@ public class BaseException extends RuntimeException {
     /**
      * 空构造器
      */
-    public BaseException(){
+    public BaseException() {
         super();
     }
 
@@ -31,7 +31,7 @@ public class BaseException extends RuntimeException {
      * 
      * @param message 消息
      */
-    public BaseException(String message){
+    public BaseException(String message) {
         super(message);
         this.message = message;
     }
@@ -41,7 +41,7 @@ public class BaseException extends RuntimeException {
      * 
      * @param message 消息
      */
-    public BaseException(String code, String message){
+    public BaseException(String code, String message) {
         super(message);
         this.code = code;
         this.message = message;
@@ -52,7 +52,7 @@ public class BaseException extends RuntimeException {
      * 
      * @param baseEnum 异常枚举
      */
-    public BaseException(EnumBase baseEnum){
+    public BaseException(EnumBase baseEnum) {
         super(baseEnum.message());
         this.code = baseEnum.code();
         this.message = baseEnum.message();
@@ -65,7 +65,7 @@ public class BaseException extends RuntimeException {
      * @param baseEnum 异常枚举
      * @param message 消息
      */
-    public BaseException(EnumBase baseEnum, String message){
+    public BaseException(EnumBase baseEnum, String message) {
         super(message);
         this.code = baseEnum.code();
         this.message = message;
@@ -78,7 +78,7 @@ public class BaseException extends RuntimeException {
      * @param baseEnum 异常枚举
      * @param cause 原因
      */
-    public BaseException(EnumBase baseEnum, Throwable cause){
+    public BaseException(EnumBase baseEnum, Throwable cause) {
         super(baseEnum.message(), cause);
         this.code = baseEnum.code();
         this.message = baseEnum.message();
@@ -90,7 +90,7 @@ public class BaseException extends RuntimeException {
      * 
      * @param cause 原因
      */
-    public BaseException(Throwable cause){
+    public BaseException(Throwable cause) {
         super(cause);
     }
 
@@ -100,7 +100,7 @@ public class BaseException extends RuntimeException {
      * @param message 消息
      * @param cause 原因
      */
-    public BaseException(String message, Throwable cause){
+    public BaseException(String message, Throwable cause) {
         super(message, cause);
         this.message = message;
     }
@@ -111,7 +111,7 @@ public class BaseException extends RuntimeException {
      * @param message 消息
      * @param cause 原因
      */
-    public BaseException(String code, String message, Throwable cause){
+    public BaseException(String code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
         this.message = message;
