@@ -29,8 +29,6 @@ public class QueryPojo {
         }
 
         try {
-            List<String> filterList = CollectionUtil.arrayToList(new String[] {"sortname", "sortorder", "pageSize", "pageNum",
-                    "dataList", "pages", "total", "appendCondition", "queryParamMap"});
             Map<String, Field> fieldMap = getClassFields(this.getClass(), true);
             for (String key : fieldMap.keySet()) {
                 Field field = fieldMap.get(key);
@@ -38,11 +36,9 @@ public class QueryPojo {
                     field.setAccessible(true);
                 }
                 try {
-                    if (!filterList.contains(key)) {
-                        Object value = field.get(this);
-                        if (value != null) {
-                            appendQueryParam(key, value);
-                        }
+                    Object value = field.get(this);
+                    if (value != null) {
+                        query.addParam(key, value);
                     }
                 } catch (Exception e) {
                 }
@@ -75,11 +71,17 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
-    public static Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
+    private final static List<String> filterList = CollectionUtil.arrayToList(new String[] {"filterList", "sortname",
+            "sortorder", "pageSize", "pageNum", "dataList", "pages", "total", "appendCondition", "queryParamMap"});
+    
+    protected static Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
         Map<String, Field> map = new HashMap<String, Field>();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            map.put(field.getName(), field);
+            String key = field.getName();
+            if (!filterList.contains(key)) {
+                map.put(key, field);
+            }
         }
         if (includeParentClass) {
             getParentClassFields(map, clazz.getSuperclass());
@@ -90,7 +92,10 @@ public class QueryPojo {
     private static Map<String, Field> getParentClassFields(Map<String, Field> map, Class clazz) {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            map.put(field.getName(), field);
+            String key = field.getName();
+            if (!filterList.contains(key)) {
+                map.put(key, field);
+            }
         }
         if (clazz.getSuperclass() == null) {
             return map;
