@@ -1,7 +1,7 @@
 package com.easyway.business.framework.mybatis.query;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +13,7 @@ public class ConditionQuery {
     private List<Condition>     criteriaWithoutValue     = new ArrayList<Condition>();
     private List<Condition>     criteriaWithSingleValue  = new ArrayList<Condition>();
     private List<Condition>     criteriaWithListValue    = new ArrayList<Condition>();
-    private Map<String, Object> paramMap                 = new LinkedHashMap<String, Object>();
+    private Map<String, Object> paramMap                 = new HashMap<String, Object>();
 
     public List<Condition> getCriteriaWithBetweenValue() {
         return this.criteriaWithBetweenValue;
@@ -98,10 +98,10 @@ public class ConditionQuery {
         this.paramMap.putAll(map);
     }
 
-    public ConditionQuery cloneConditionQuery(ConditionQuery query) {
+    public ConditionQuery cloneConditionQuery() {
         ConditionQuery m_query = new ConditionQuery();
-        m_query.addAll(query.getAllCondition());
-        m_query.addAllParam(query.getParamMap());
+        m_query.addAll(this.getAllCondition());
+        m_query.addAllParam(this.getParamMap());
         return m_query;
     }
 }
