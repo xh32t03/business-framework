@@ -71,10 +71,10 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
-    private final static List<String> filterList = CollectionUtil.arrayToList(new String[] {"filterList", "sortname",
+    private static final List<String> filterList = CollectionUtil.arrayToList(new String[] {"filterList", "sortname",
             "sortorder", "pageSize", "pageNum", "dataList", "pages", "total", "appendCondition", "queryParamMap"});
     
-    protected static Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
+    protected Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
         Map<String, Field> map = new HashMap<String, Field>();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
@@ -89,7 +89,7 @@ public class QueryPojo {
         return map;
     }
 
-    private static Map<String, Field> getParentClassFields(Map<String, Field> map, Class clazz) {
+    private Map<String, Field> getParentClassFields(Map<String, Field> map, Class clazz) {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
