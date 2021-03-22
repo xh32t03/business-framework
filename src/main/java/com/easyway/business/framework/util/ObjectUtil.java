@@ -24,7 +24,7 @@ public final class ObjectUtil {
     }
 
     public static boolean isNotNull(Object obj) {
-        return !isNotEmpty(obj);
+        return obj != null;
     }
     
     public static boolean isEmpty(Object[] array) {
