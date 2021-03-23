@@ -1,5 +1,6 @@
 package com.easyway.business.framework.springmvc;
 
+import java.time.Instant;
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,11 +35,15 @@ public class DateConverter implements Converter<String, Date> {
     public Date convert(String source) {
         try {
             if (StringUtils.hasText(source)) {
-                if (source.contains(":")
-                        || source.indexOf(":") != -1) {
-                    return Constant.NORM_DATETIME_FORMAT.parse(source);
+                if (source.contains("-")) {
+                    if (source.contains(":")) {
+                        return Constant.NORM_DATETIME_FORMAT.get().parse(source);
+                    } else {
+                        return Constant.NORM_DATE_FORMAT.get().parse(source);
+                    }
+                } else if (source.length() == 13) {
+                    return Date.from(Instant.ofEpochMilli(Long.valueOf(source)));
                 }
-                return Constant.NORM_DATE_FORMAT.parse(source);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
