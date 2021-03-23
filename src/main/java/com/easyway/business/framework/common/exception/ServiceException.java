@@ -6,14 +6,14 @@ public class ServiceException extends BaseException {
     private static final long serialVersionUID = -6377567047634446727L;
 
     /**
-     * 构造新实例。
+     * 构造新实例
      */
     public ServiceException() {
         super();
     }
 
     /**
-     * @param errorMessage 异常信息。
+     * @param errorMessage 异常信息
      */
     public ServiceException(String errorMessage) {
         super(errorMessage);
@@ -21,17 +21,17 @@ public class ServiceException extends BaseException {
     }
 
     /**
-     * 用表示异常原因的对象构造新实例。
+     * 用表示异常原因的对象构造新实例
      * 
-     * @param cause 异常原因。
+     * @param cause 异常原因
      */
     public ServiceException(Throwable cause) {
         super((String) null, cause);
     }
 
     /**
-     * @param errorMessage 异常信息。
-     * @param cause 异常原因。
+     * @param errorMessage 异常信息
+     * @param cause 异常原因
      */
     public ServiceException(String errorMessage, Throwable cause) {
         super(errorMessage, cause);
@@ -39,9 +39,9 @@ public class ServiceException extends BaseException {
     }
 
     /**
-     * @param errorCode 错误代码。
-     * @param errorMessage 异常信息。
-     * @param cause 异常原因。
+     * @param errorCode 错误代码
+     * @param errorMessage 异常信息
+     * @param cause 异常原因
      */
     public ServiceException(String errorCode, String errorMessage, Throwable cause) {
         super(errorMessage, cause);
