@@ -10,9 +10,9 @@ import com.easyway.business.framework.json.ToJson;
 import com.easyway.business.framework.json.annotion.JsonData;
 import com.easyway.business.framework.json.annotion.NotJsonData;
 
-public class JsonUtil {
+public final class JsonUtil {
 
-    private final static DecimalFormat dfm = new DecimalFormat("##0.00");
+    private static final DecimalFormat dfm = new DecimalFormat("##0.00");
 
     public static JSONObject toJSONObject(Object target) {
         if (target == null) {
@@ -24,10 +24,9 @@ public class JsonUtil {
             Method[] methods = target.getClass().getMethods();
             for (Method method : methods) {
                 methodName = method.getName();
-                if ((!methodName.equals("getClass")) && (!methodName.equals("getHandler"))
-                        && (methodName.startsWith("get"))
-                        && (!method.isAnnotationPresent(NotJsonData.class))
-                        && (method.getParameterTypes().length == 0)) {
+                if ((methodName.startsWith("get") && (method.getParameterTypes().length == 0)
+                        && (!methodName.equals("getClass"))) && (!methodName.equals("getHandler"))
+                        && (!method.isAnnotationPresent(NotJsonData.class))) {
                     String field = methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
                     Object value = method.invoke(target, new Object[0]);
                     boolean isJsonData = false;
