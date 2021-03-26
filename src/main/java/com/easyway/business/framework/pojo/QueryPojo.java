@@ -30,15 +30,16 @@ public class QueryPojo {
 
         try {
             Map<String, Field> fieldMap = getClassFields(this.getClass(), true);
-            for (String key : fieldMap.keySet()) {
-                Field field = fieldMap.get(key);
+            Set<Map.Entry<String, Field>> entryseSet = fieldMap.entrySet();
+            for (Map.Entry<String, Field> entry : entryseSet) {
+                Field field = entry.getValue();
                 if (!field.isAccessible()) {
                     field.setAccessible(true);
                 }
                 try {
                     Object value = field.get(this);
                     if (value != null) {
-                        query.addParam(key, value);
+                        query.addParam(entry.getKey(), value);
                     }
                 } catch (Exception e) {
                 }
