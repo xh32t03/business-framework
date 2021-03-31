@@ -70,7 +70,7 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
-    private static final List<String> FILTER_LIST = CollectionUtil
+    private static final List<String> filterList = CollectionUtil
             .arrayToList(new String[] {"filterList", "sortname", "sortorder", "pageSize", "pageNum",
                     "dataList", "pages", "total", "appendCondition", "queryParamMap"});
     
@@ -79,7 +79,7 @@ public class QueryPojo {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
-            if (!FILTER_LIST.contains(key)) {
+            if (!filterList.contains(key)) {
                 map.put(key, field);
             }
         }
@@ -93,7 +93,7 @@ public class QueryPojo {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
-            if (!FILTER_LIST.contains(key)) {
+            if (!filterList.contains(key)) {
                 map.put(key, field);
             }
         }
