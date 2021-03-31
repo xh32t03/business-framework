@@ -10,7 +10,7 @@ import com.easyway.business.framework.mybatis.annotion.factory.AnnotationConditi
 import com.easyway.business.framework.mybatis.query.condition.Condition;
 
 public final class ConditionUtil {
-    private final static Logger logger = LoggerFactory.getLogger(ConditionUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConditionUtil.class);
     
 	public static List<Condition> getConditions(Object target) {
 		if (target == null) {
