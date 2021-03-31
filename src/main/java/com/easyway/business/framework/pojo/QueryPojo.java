@@ -21,13 +21,6 @@ public class QueryPojo {
     public ConditionQuery buildConditionQuery() {
         ConditionQuery query = newConditionQuery();
         query.addAll(toConditions());
-        if (this.appendCondition != null) {
-            query.addAll(new ArrayList<>(appendCondition));
-        }
-        if (this.queryParamMap != null) {
-            query.addAllParam(this.queryParamMap);
-        }
-
         try {
             Map<String, Field> fieldMap = getClassFields(this.getClass(), true);
             Set<Map.Entry<String, Field>> entryseSet = fieldMap.entrySet();
@@ -46,7 +39,12 @@ public class QueryPojo {
             }
         } catch (Exception e) {
         }
-
+        if (this.appendCondition != null) {
+            query.addAll(new ArrayList<>(appendCondition));
+        }
+        if (this.queryParamMap != null) {
+            query.addAllParam(this.queryParamMap);
+        }
         return query;
     }
 
@@ -72,15 +70,16 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
-    private static final List<String> filterList = CollectionUtil.arrayToList(new String[] {"filterList", "sortname",
-            "sortorder", "pageSize", "pageNum", "dataList", "pages", "total", "appendCondition", "queryParamMap"});
+    private static final List<String> FILTER_LIST = CollectionUtil
+            .arrayToList(new String[] {"filterList", "sortname", "sortorder", "pageSize", "pageNum",
+                    "dataList", "pages", "total", "appendCondition", "queryParamMap"});
     
     protected Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
         Map<String, Field> map = new HashMap<String, Field>();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
-            if (!filterList.contains(key)) {
+            if (!FILTER_LIST.contains(key)) {
                 map.put(key, field);
             }
         }
@@ -94,7 +93,7 @@ public class QueryPojo {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
-            if (!filterList.contains(key)) {
+            if (!FILTER_LIST.contains(key)) {
                 map.put(key, field);
             }
         }
