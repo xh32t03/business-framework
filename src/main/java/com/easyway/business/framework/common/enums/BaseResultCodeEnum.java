@@ -58,7 +58,7 @@ public enum BaseResultCodeEnum implements EnumBase {
     }
 
     /**
-     * 通过枚举<code>code</code>获得枚举。
+     * 通过枚举<code>code</code>获得枚举
      * 
      * @param code 枚举编号
      * @return BaseResultCodeEnum
