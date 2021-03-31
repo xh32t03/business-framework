@@ -18,6 +18,7 @@ public final class Constant {
     public static final ThreadLocal<DateFormat> NORM_DATE_FORMAT     =
             ThreadLocal.withInitial(() -> new SimpleDateFormat(FORMAT_YMD));
 
+    public static final String                  LIKE                 = "like";
     public static final String                  EQUAL                = "=";
     public static final String                  NOT_EQUAL            = "!=";
     public static final String                  IN                   = "in";
