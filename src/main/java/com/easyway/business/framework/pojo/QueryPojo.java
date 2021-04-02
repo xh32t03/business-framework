@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.easyway.business.framework.constant.Constant;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
 import com.easyway.business.framework.mybatis.query.condition.Condition;
 import com.easyway.business.framework.mybatis.util.ConditionUtil;
@@ -70,16 +71,12 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
-    private static final List<String> filterList = CollectionUtil
-            .arrayToList(new String[] {"filterList", "sortname", "sortorder", "pageSize", "pageNum",
-                    "dataList", "pages", "total", "appendCondition", "queryParamMap"});
-    
     protected Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
         Map<String, Field> map = new HashMap<String, Field>();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
-            if (!filterList.contains(key)) {
+            if (!Constant.FILTER_LIST.contains(key)) {
                 map.put(key, field);
             }
         }
@@ -93,7 +90,7 @@ public class QueryPojo {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String key = field.getName();
-            if (!filterList.contains(key)) {
+            if (!Constant.FILTER_LIST.contains(key)) {
                 map.put(key, field);
             }
         }

@@ -2,6 +2,8 @@ package com.easyway.business.framework.constant;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import com.easyway.business.framework.util.CollectionUtil;
 
 public final class Constant {
 
@@ -27,4 +29,8 @@ public final class Constant {
     public static final String                  NOT_LESS_THAN        = "<=";
     public static final String                  GREAT_THAN           = ">";
     public static final String                  LESS_THAN            = "<";
+
+    public static final List<String>            FILTER_LIST          =
+            CollectionUtil.arrayToList(new String[] {"sortname", "sortorder", "pageSize", "pageNum",
+                    "dataList", "pages", "total", "appendCondition", "queryParamMap"});
 }
