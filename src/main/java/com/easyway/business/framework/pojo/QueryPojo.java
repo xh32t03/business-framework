@@ -7,13 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import com.easyway.business.framework.constant.Constant;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
 import com.easyway.business.framework.mybatis.query.condition.Condition;
 import com.easyway.business.framework.mybatis.util.ConditionUtil;
-import com.easyway.business.framework.util.CollectionUtil;
+import com.easyway.business.framework.util.ReflectUtil;
 
-@SuppressWarnings("all")
 public class QueryPojo {
 
     private Set<Condition>      appendCondition = null;
@@ -23,7 +21,7 @@ public class QueryPojo {
         ConditionQuery query = newConditionQuery();
         query.addAll(toConditions());
         try {
-            Map<String, Field> fieldMap = getClassFields(this.getClass(), true);
+            Map<String, Field> fieldMap = ReflectUtil.getClassFields(this.getClass(), true);
             Set<Map.Entry<String, Field>> entryseSet = fieldMap.entrySet();
             for (Map.Entry<String, Field> entry : entryseSet) {
                 Field field = entry.getValue();
@@ -69,36 +67,6 @@ public class QueryPojo {
             this.appendCondition = new HashSet<Condition>();
         }
         this.appendCondition.add(condition);
-    }
-
-    protected Map<String, Field> getClassFields(Class clazz, boolean includeParentClass) {
-        Map<String, Field> map = new HashMap<String, Field>();
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
-            String key = field.getName();
-            if (!Constant.FILTER_LIST.contains(key)) {
-                map.put(key, field);
-            }
-        }
-        if (includeParentClass) {
-            getParentClassFields(map, clazz.getSuperclass());
-        }
-        return map;
-    }
-
-    private Map<String, Field> getParentClassFields(Map<String, Field> map, Class clazz) {
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
-            String key = field.getName();
-            if (!Constant.FILTER_LIST.contains(key)) {
-                map.put(key, field);
-            }
-        }
-        if (clazz.getSuperclass() == null) {
-            return map;
-        }
-        getParentClassFields(map, clazz.getSuperclass());
-        return map;
     }
 
 }
