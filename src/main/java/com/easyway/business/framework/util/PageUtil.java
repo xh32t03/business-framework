@@ -11,7 +11,7 @@ public final class PageUtil {
      * @param pageSize 每页多少条数据
      * @return
      */
-    public static <T> List<T> startPage(List<T> list, Integer pageNum, Integer pageSize) {
+    public static <T> List<T> pagging(List<T> list, Integer pageNum, Integer pageSize) {
         if (list == null) {
             return null;
         }
