@@ -25,7 +25,7 @@ public enum BaseResultCodeEnum implements EnumBase {
 
     /** 操作不正确 */
     ILLEGAL_OPERATION("ILLEGAL_OPERATION", "操作不正确"),
-    
+
     /** 逻辑错误 */
     LOGIC_ERROR("LOGIC_ERROR", "逻辑错误"),
 
@@ -37,7 +37,7 @@ public enum BaseResultCodeEnum implements EnumBase {
 
     /** 数据异常 */
     DATA_ERROR("DATA_ERROR", "数据异常"),
-    
+
     ;
 
     /** 枚举编号 */
@@ -52,7 +52,7 @@ public enum BaseResultCodeEnum implements EnumBase {
      * @param code 枚举编号
      * @param message 枚举详情
      */
-    private BaseResultCodeEnum(String code, String message){
+    private BaseResultCodeEnum(String code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -75,7 +75,7 @@ public enum BaseResultCodeEnum implements EnumBase {
     public String getCode() {
         return code;
     }
-    
+
     public void setCode(String code) {
         this.code = code;
     }
@@ -92,7 +92,7 @@ public enum BaseResultCodeEnum implements EnumBase {
     public String code() {
         return code;
     }
-    
+
     @Override
     public String message() {
         return message;

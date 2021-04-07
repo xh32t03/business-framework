@@ -16,14 +16,14 @@ public class ProfilerHelper {
     private static final ThreadLocal entryStack = new ThreadLocal();
 
     /**
-     * 开始计时。
+     * 开始计时
      */
     public static void start() {
         start((String) null);
     }
 
     /**
-     * 开始计时。
+     * 开始计时
      *
      * @param message 第一个entry的信息
      */
@@ -32,7 +32,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 开始计时。
+     * 开始计时
      *
      * @param message 第一个entry的信息
      */
@@ -41,10 +41,10 @@ public class ProfilerHelper {
     }
 
     /**
-     * 清除计时器。
+     * 清除计时器
      * 
      * <p>
-     * 清除以后必须再次调用<code>start</code>方可重新计时。
+     * 清除以后必须再次调用<code>start</code>方可重新计时
      * </p>
      */
     public static void reset() {
@@ -52,7 +52,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 开始一个新的entry，并计时。
+     * 开始一个新的entry，并计时
      *
      * @param message 新entry的信息
      */
@@ -65,7 +65,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 开始一个新的entry，并计时。
+     * 开始一个新的entry，并计时
      *
      * @param message 新entry的信息
      */
@@ -78,7 +78,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 结束最近的一个entry，记录结束时间。
+     * 结束最近的一个entry，记录结束时间
      */
     public static void release() {
         Entry currentEntry = getCurrentEntry();
@@ -89,7 +89,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 取得耗费的总时间。
+     * 取得耗费的总时间
      *
      * @return 耗费的总时间，如果未开始计时，则返回<code>-1</code>
      */
@@ -104,7 +104,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 列出所有的entry。
+     * 列出所有的entry
      *
      * @return 列出所有entry，并统计各自所占用的时间
      */
@@ -113,7 +113,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 列出所有的entry。
+     * 列出所有的entry
      *
      * @param prefix 前缀
      *
@@ -124,7 +124,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 列出所有的entry。
+     * 列出所有的entry
      *
      * @param prefix1 首行前缀
      * @param prefix2 后续行前缀
@@ -142,7 +142,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 取得第一个entry。
+     * 取得第一个entry
      *
      * @return 第一个entry，如果不存在，则返回<code>null</code>
      */
@@ -151,7 +151,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 取得最近的一个entry。
+     * 取得最近的一个entry
      *
      * @return 最近的一个entry，如果不存在，则返回<code>null</code>
      */
@@ -170,7 +170,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 代表一个计时单元。
+     * 代表一个计时单元
      */
     public static final class Entry {
         private final List   subEntries = new ArrayList(4);
@@ -182,7 +182,7 @@ public class ProfilerHelper {
         private long         endTime;
 
         /**
-         * 创建一个新的entry。
+         * 创建一个新的entry
          *
          * @param message entry的信息，可以是<code>null</code>
          * @param parentEntry 父entry，可以是<code>null</code>
@@ -197,7 +197,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得entry的信息。
+         * 取得entry的信息
          */
         public String getMessage() {
             String messageString = null;
@@ -227,7 +227,7 @@ public class ProfilerHelper {
         }
         
         /**
-         * 取得entry相对于第一个entry的起始时间。
+         * 取得entry相对于第一个entry的起始时间
          *
          * @return 相对起始时间
          */
@@ -236,7 +236,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得entry相对于第一个entry的结束时间。
+         * 取得entry相对于第一个entry的结束时间
          *
          * @return 相对结束时间，如果entry还未结束，则返回<code>-1</code>
          */
@@ -249,7 +249,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得entry持续的时间。
+         * 取得entry持续的时间
          *
          * @return entry持续的时间，如果entry还未结束，则返回<code>-1</code>
          */
@@ -262,7 +262,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得entry自身所用的时间，即总时间减去所有子entry所用的时间。
+         * 取得entry自身所用的时间，即总时间减去所有子entry所用的时间
          *
          * @return entry自身所用的时间，如果entry还未结束，则返回<code>-1</code>
          */
@@ -289,7 +289,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得当前entry在父entry中所占的时间百分比。
+         * 取得当前entry在父entry中所占的时间百分比
          *
          * @return 百分比
          */
@@ -309,7 +309,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得当前entry在第一个entry中所占的时间百分比。
+         * 取得当前entry在第一个entry中所占的时间百分比
          *
          * @return 百分比
          */
@@ -329,7 +329,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得所有子entries。
+         * 取得所有子entries
          *
          * @return 所有子entries的列表（不可更改）
          */
@@ -338,14 +338,14 @@ public class ProfilerHelper {
         }
 
         /**
-         * 结束当前entry，并记录结束时间。
+         * 结束当前entry，并记录结束时间
          */
         private void release() {
             endTime = System.currentTimeMillis();
         }
 
         /**
-         * 判断当前entry是否结束。
+         * 判断当前entry是否结束
          *
          * @return 如果entry已经结束，则返回<code>true</code>
          */
@@ -354,7 +354,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 创建一个新的子entry。
+         * 创建一个新的子entry
          *
          * @param message 子entry的信息
          */
@@ -364,7 +364,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 取得未结束的子entry。
+         * 取得未结束的子entry
          *
          * @return 未结束的子entry，如果没有子entry，或所有entry均已结束，则返回<code>null</code>
          */
@@ -383,7 +383,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 将entry转换成字符串的表示。
+         * 将entry转换成字符串的表示
          *
          * @return 字符串表示的entry
          */
@@ -392,7 +392,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 将entry转换成字符串的表示。
+         * 将entry转换成字符串的表示
          *
          * @param prefix1 首行前缀
          * @param prefix2 后续行前缀
@@ -408,7 +408,7 @@ public class ProfilerHelper {
         }
 
         /**
-         * 将entry转换成字符串的表示。
+         * 将entry转换成字符串的表示
          *
          * @param buffer 字符串buffer
          * @param prefix1 首行前缀
@@ -477,7 +477,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 显示消息的级别。
+     * 显示消息的级别
      */
     public static enum MessageLevel {
 
@@ -512,7 +512,7 @@ public class ProfilerHelper {
     }
 
     /**
-     * 代表一个profiler entry的详细信息。
+     * 代表一个profiler entry的详细信息
      */
     public interface Message {
         MessageLevel getMessageLevel(Entry entry);
