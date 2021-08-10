@@ -99,9 +99,9 @@ public class ConditionQuery {
     }
 
     public ConditionQuery cloneConditionQuery() {
-        ConditionQuery m_query = new ConditionQuery();
-        m_query.addAll(this.getAllCondition());
-        m_query.addAllParam(this.getParamMap());
-        return m_query;
+        ConditionQuery query = new ConditionQuery();
+        query.addAll(this.getAllCondition());
+        query.addAllParam(this.getParamMap());
+        return query;
     }
 }
