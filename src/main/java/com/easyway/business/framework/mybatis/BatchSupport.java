@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 /**
- * 数据库批量操作类
+ * 数据库批量操作
  * 
  * @author xl.liu
  */
