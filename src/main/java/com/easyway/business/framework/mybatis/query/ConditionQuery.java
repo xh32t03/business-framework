@@ -79,10 +79,10 @@ public class ConditionQuery {
     
     public List<Condition> getAllCondition() {
         List<Condition> ret = new ArrayList<Condition>();
-        ret.addAll(this.criteriaWithBetweenValue);
         ret.addAll(this.criteriaWithoutValue);
         ret.addAll(this.criteriaWithSingleValue);
         ret.addAll(this.criteriaWithListValue);
+        ret.addAll(this.criteriaWithBetweenValue);
         return ret;
     }
 
