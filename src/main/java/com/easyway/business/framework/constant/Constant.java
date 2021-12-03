@@ -32,5 +32,5 @@ public final class Constant {
 
     public static final List<String>            FILTER_LIST          =
             CollectionUtil.arrayToList(new String[] {"sortname", "sortorder", "pageSize", "pageNum",
-                    "dataList", "pages", "total", "appendCondition", "queryParamMap"});
+                    "list", "pages", "total", "appendCondition", "queryParamMap"});
 }

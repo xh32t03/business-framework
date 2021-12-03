@@ -14,7 +14,7 @@ public class Page extends QueryPojo {
     // 当前第几页
     private int     pageNum  = 1;
     // 查询集合
-    private List<?> dataList;
+    private List<?> list;
     // 总页数
     private int     pages;
     // 总记录数
@@ -28,7 +28,7 @@ public class Page extends QueryPojo {
         this.pageSize = page.pageSize;
         this.pageNum = page.pageNum;
         this.total = page.total;
-        this.dataList = page.dataList;
+        this.list = page.list;
     }
 
     public int getPageSize() {
@@ -85,11 +85,11 @@ public class Page extends QueryPojo {
 
     @JsonData
     public List<?> getList() {
-        return this.dataList;
+        return this.list;
     }
 
-    public void setList(List<?> dataList) {
-        this.dataList = dataList;
+    public void setList(List<?> list) {
+        this.list = list;
     }
 
     public ConditionQuery buildConditionQuery() {
