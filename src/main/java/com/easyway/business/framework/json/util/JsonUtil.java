@@ -27,7 +27,8 @@ public final class JsonUtil {
                 if ((methodName.startsWith("get") && (method.getParameterTypes().length == 0)
                         && (!methodName.equals("getClass"))) && (!methodName.equals("getHandler"))
                         && (!method.isAnnotationPresent(NotJsonData.class))) {
-                    String field = methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
+                    String field =
+                            methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
                     Object value = method.invoke(target, new Object[0]);
                     boolean isJsonData = false;
                     if (method.isAnnotationPresent(JsonData.class)) {
@@ -89,31 +90,4 @@ public final class JsonUtil {
         return jsonArray;
     }
 
-    // private static SerializeConfig mapping = new SerializeConfig();
-    // private static String dateFormat;
-    // static {
-    // dateFormat = "yyyy-MM-dd HH:mm:ss";
-    // mapping.put(Date.class, new SimpleDateFormatSerializer(dateFormat));
-    // }
-    //
-    // /**
-    // * 默认的处理时间
-    // *
-    // * @param jsonText
-    // * @return
-    // */
-    // public static String toJSON(Object jsonText) {
-    // return JSON.toJSONString(jsonText, SerializerFeature.WriteDateUseDateFormat);
-    // }
-    //
-    // /**
-    // * 自定义时间格式
-    // *
-    // * @param jsonText
-    // * @return
-    // */
-    // public static String toJSON(String dateFormat, String jsonText) {
-    // mapping.put(Date.class, new SimpleDateFormatSerializer(dateFormat));
-    // return JSON.toJSONString(jsonText, mapping);
-    // }
 }
