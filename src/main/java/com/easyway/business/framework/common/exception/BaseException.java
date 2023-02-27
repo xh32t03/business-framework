@@ -19,16 +19,11 @@ public class BaseException extends RuntimeException {
     // 异常枚举
     protected EnumBase        errorEnum;
 
-    /**
-     * 空构造器
-     */
     public BaseException() {
         super();
     }
 
     /**
-     * 构造器
-     * 
      * @param message 消息
      */
     public BaseException(String message) {
@@ -37,8 +32,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param message 消息
      */
     public BaseException(String code, String message) {
@@ -48,8 +41,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param baseEnum 异常枚举
      */
     public BaseException(EnumBase baseEnum) {
@@ -60,8 +51,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param baseEnum 异常枚举
      * @param message 消息
      */
@@ -73,8 +62,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param baseEnum 异常枚举
      * @param cause 原因
      */
@@ -86,8 +73,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param cause 原因
      */
     public BaseException(Throwable cause) {
@@ -95,8 +80,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param message 消息
      * @param cause 原因
      */
@@ -106,8 +89,6 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 构造器
-     * 
      * @param message 消息
      * @param cause 原因
      */
