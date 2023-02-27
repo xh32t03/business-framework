@@ -6,65 +6,72 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 /**
  * Spring上下文
  * 
  * @author xl.liu
  */
-//@Component
-//@Lazy(false)
+@Component
+@Lazy(false)
 @SuppressWarnings("all")
 public class SpringContext implements ApplicationContextAware, DisposableBean {
 
+    /**
+     * 上下文对象实例
+     */
     private static ApplicationContext applicationContext;
 
-    /*
-     * 实现了ApplicationContextAware接口，必须实现该方法；通过传递applicationContext参数初始化成员变量applicationContext
-     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         SpringContext.applicationContext = applicationContext;
     }
 
+    /**
+     * 获取applicationContext
+     *
+     * @return
+     */
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 
-    /**
-     * 从静态变量applicationContext中取得Bean,自动转型为所赋值对象的类型.
-     */
-    public static <T> T getBean(String name) throws BeansException {
+    public static Object getBean(String name) {
         checkApplicationContext();
-        return (T) applicationContext.getBean(name);
+        return applicationContext.getBean(name);
     }
 
-    /**
-     * 从静态变量applicationContext中取得Bean,自动转型为所赋值对象的类型.
-     */
-    public static <T> T getBean(Class<T> clazz) throws BeansException {
+    public static <T> T getBean(Class<T> clazz) {
         checkApplicationContext();
-        return (T) applicationContext.getBeansOfType(clazz);
+        return applicationContext.getBean(clazz);
     }
 
-    public static <T> T getBean(String name, Class<T> clazz) throws BeansException {
+    public static <T> T getBean(String name, Class<T> clazz) {
         checkApplicationContext();
-        return (T) applicationContext.getBean(name, clazz);
+        return applicationContext.getBean(name, clazz);
+    }
+
+    public static boolean containsBean(String name) {
+        checkApplicationContext();
+        return applicationContext.containsBean(name);
+    }
+
+    public static boolean isSingleton(String name) {
+        checkApplicationContext();
+        return applicationContext.isSingleton(name);
     }
 
     public static Class<?> getType(String name) {
+        checkApplicationContext();
         return applicationContext.getType(name);
     }
-    
+
     private static void checkApplicationContext() {
-        if (applicationContext == null) {
-            throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContext");
-        }
+        Assert.notNull(applicationContext,
+                "applicaitonContext未注入,请在applicationContext.xml中定义SpringContextUtil");
     }
 
-    /**
-     * 实现DisposableBean接口,重写destroy方法,相当于destroy-method,bean被销毁的时候被调用,实现在Context关闭时清理静态变量的目的.
-     */
     @Override
     public void destroy() throws Exception {
         applicationContext = null;

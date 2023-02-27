@@ -1,11 +1,16 @@
 package com.easyway.business.framework.springmvc.controller;
 
+import java.beans.PropertyEditorSupport;
+import java.util.Date;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import com.easyway.business.framework.json.JsonClothProcessor;
 import com.easyway.business.framework.pojo.Grid;
+import com.easyway.business.framework.springmvc.StringToDateConverter;
 import com.easyway.business.framework.springmvc.result.ResultBody;
 import com.easyway.business.framework.springmvc.result.ResultUtil;
 
-public class SuperController {
+public class BaseController {
     /**
      * 渲染失败数据
      *
@@ -34,7 +39,7 @@ public class SuperController {
     }
 
     /**
-     * 对象穿衣
+     * 渲染数据穿衣
      * 
      * @param grid
      * @param clothProcessor
@@ -43,4 +48,13 @@ public class SuperController {
         return ResultUtil.success(grid, clothProcessor);
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                setValue(new StringToDateConverter().convert(text));
+            }
+        });
+    }
 }

@@ -2,8 +2,6 @@ package com.easyway.business.framework.springmvc;
 
 import java.time.Instant;
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 import com.easyway.business.framework.constant.Constant;
@@ -16,7 +14,7 @@ import com.easyway.business.framework.constant.Constant;
  *     class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
  *     <property name="converters" >
  *         <list>
- *             <bean class="com.easyway.business.framework.springmvc.DateConverter" />
+ *             <bean class="com.easyway.business.framework.springmvc.StringToDateConverter" />
  *         </list>
  *     </property>
  * </bean>
@@ -27,26 +25,25 @@ import com.easyway.business.framework.constant.Constant;
  * 
  * @author xl.liu
  */
-public class DateConverter implements Converter<String, Date> {
+public class StringToDateConverter implements Converter<String, Date> {
 
-    private static final Logger logger = LoggerFactory.getLogger(DateConverter.class);
-    
     @Override
-    public Date convert(String source) {
+    public Date convert(String value) {
         try {
-            if (StringUtils.hasText(source)) {
-                if (source.contains("-")) {
-                    if (source.contains(":")) {
-                        return Constant.NORM_DATETIME_FORMAT.get().parse(source);
+            if (StringUtils.hasText(value)) {
+                value = value.trim();
+                if (value.contains("-")) {
+                    if (value.contains(":")) {
+                        return Constant.NORM_DATETIME_FORMAT.get().parse(value);
                     } else {
-                        return Constant.NORM_DATE_FORMAT.get().parse(source);
+                        return Constant.NORM_DATE_FORMAT.get().parse(value);
                     }
-                } else if (source.length() == 13) {
-                    return Date.from(Instant.ofEpochMilli(Long.valueOf(source)));
+                } else if (value.matches("^\\d+$")) {
+                    return Date.from(Instant.ofEpochMilli(Long.valueOf(value)));
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            throw new IllegalArgumentException(String.format("parser %s to Date failed", value));
         }
         return null;
     }

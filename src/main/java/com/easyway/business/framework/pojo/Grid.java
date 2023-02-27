@@ -3,10 +3,8 @@ package com.easyway.business.framework.pojo;
 import com.alibaba.fastjson.annotation.JSONType;
 import com.easyway.business.framework.json.annotion.NotJsonData;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JSONType(ignores = {"sortname", "sortorder"})
-@JsonIgnoreProperties(value = {"sortname", "sortorder"})
 public class Grid extends Page {
     private String sortname;
     private String sortorder;

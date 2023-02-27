@@ -5,7 +5,6 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.easyway.business.framework.json.annotion.JsonData;
 import com.easyway.business.framework.json.annotion.NotJsonData;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Page extends QueryPojo {
 
@@ -74,7 +73,6 @@ public class Page extends QueryPojo {
      * 
      * @return int
      */
-    @JsonIgnore
     @NotJsonData
     @JSONField(serialize = false)
     public int getPageOffset() {

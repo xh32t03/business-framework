@@ -17,6 +17,7 @@ public class QueryPojo {
     private Set<Condition>      appendCondition = null;
     private Map<String, Object> queryParamMap   = null;
 
+    @SuppressWarnings("all")
     public ConditionQuery buildConditionQuery() {
         ConditionQuery query = newConditionQuery();
         query.addAll(toConditions());
