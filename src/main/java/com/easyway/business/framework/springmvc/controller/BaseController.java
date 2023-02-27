@@ -50,6 +50,7 @@ public class BaseController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        // 对@RequestBody注解不生效
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) throws IllegalArgumentException {
