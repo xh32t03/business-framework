@@ -69,7 +69,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
 
     private static void checkApplicationContext() {
         Assert.notNull(applicationContext,
-                "applicaitonContext未注入,请在applicationContext.xml中定义SpringContextUtil");
+                "applicaitonContext未注入,请在applicationContext.xml中定义SpringContext");
     }
 
     @Override
