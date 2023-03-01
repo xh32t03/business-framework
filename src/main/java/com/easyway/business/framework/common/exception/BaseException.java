@@ -1,6 +1,6 @@
 package com.easyway.business.framework.common.exception;
 
-import com.easyway.business.framework.common.enums.BaseEnum;
+import com.easyway.business.framework.common.enums.EnumBase;
 
 /**
  * 运行时异常
@@ -17,7 +17,7 @@ public class BaseException extends RuntimeException {
     protected String          message;
 
     // 异常枚举
-    protected BaseEnum        errorEnum;
+    protected EnumBase        errorEnum;
 
     public BaseException() {
         super();
@@ -43,7 +43,7 @@ public class BaseException extends RuntimeException {
     /**
      * @param baseEnum 异常枚举
      */
-    public BaseException(BaseEnum baseEnum) {
+    public BaseException(EnumBase baseEnum) {
         super(baseEnum.message());
         this.code = baseEnum.code();
         this.message = baseEnum.message();
@@ -54,7 +54,7 @@ public class BaseException extends RuntimeException {
      * @param baseEnum 异常枚举
      * @param message 消息
      */
-    public BaseException(BaseEnum baseEnum, String message) {
+    public BaseException(EnumBase baseEnum, String message) {
         super(message);
         this.code = baseEnum.code();
         this.message = message;
@@ -65,7 +65,7 @@ public class BaseException extends RuntimeException {
      * @param baseEnum 异常枚举
      * @param cause 原因
      */
-    public BaseException(BaseEnum baseEnum, Throwable cause) {
+    public BaseException(EnumBase baseEnum, Throwable cause) {
         super(baseEnum.message(), cause);
         this.code = baseEnum.code();
         this.message = baseEnum.message();
@@ -106,7 +106,7 @@ public class BaseException extends RuntimeException {
         return message;
     }
 
-    public BaseEnum getErrorEnum() {
+    public EnumBase getErrorEnum() {
         return errorEnum;
     }
 }
