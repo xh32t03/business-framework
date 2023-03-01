@@ -5,7 +5,7 @@ package com.easyway.business.framework.common.enums;
  * 
  * @author xl.liu
  */
-public interface BaseEnum {
+public interface EnumBase {
 
     /**
      * 获取枚举名
