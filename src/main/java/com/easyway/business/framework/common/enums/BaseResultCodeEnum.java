@@ -8,8 +8,8 @@ public enum BaseResultCodeEnum implements EnumBase {
     /** 系统异常 */
     SYSTEM_ERROR("SYSTEM_ERROR", "系统异常，请联系管理员！"),
 
-    /** 外部接口调用异常 */
-    INTERFACE_SYSTEM_ERROR("INTERFACE_SYSTEM_ERROR", "外部接口调用异常！"),
+    /** 接口调用异常 */
+    INTERFACE_SYSTEM_ERROR("INTERFACE_SYSTEM_ERROR", "接口调用异常"),
 
     /** 业务连接处理超时 */
     CONNECT_TIME_OUT("CONNECT_TIME_OUT", "系统超时，请稍后再试！"),
