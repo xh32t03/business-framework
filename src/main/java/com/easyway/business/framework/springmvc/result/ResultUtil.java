@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.alibaba.fastjson.JSONObject;
-import com.easyway.business.framework.common.enums.BaseEnum;
+import com.easyway.business.framework.common.enums.EnumBase;
 import com.easyway.business.framework.json.JsonClothProcessor;
 import com.easyway.business.framework.json.util.JsonUtil;
 import com.easyway.business.framework.pojo.Page;
@@ -57,7 +57,7 @@ public final class ResultUtil {
         return ResultUtil.error(code, msg);
     }
     
-    public static ResultBody renderError(BaseEnum errorInfo) {
+    public static ResultBody renderError(EnumBase errorInfo) {
         return ResultUtil.error(errorInfo);
     }
     
@@ -72,7 +72,7 @@ public final class ResultUtil {
         return new ResultBody(Boolean.TRUE, code, msg);
     }
     
-    public static ResultBody renderBody(BaseEnum errorInfo) {
+    public static ResultBody renderBody(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
         resultBody.setSuccess(Boolean.TRUE);
@@ -97,7 +97,7 @@ public final class ResultUtil {
         return new ResultBody(Boolean.FALSE, code, msg);
     }
 
-    public static ResultBody error(BaseEnum errorInfo) {
+    public static ResultBody error(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
         resultBody.setSuccess(Boolean.FALSE);
