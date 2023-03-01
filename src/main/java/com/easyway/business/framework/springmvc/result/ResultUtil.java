@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.alibaba.fastjson.JSONObject;
-import com.easyway.business.framework.common.enums.EnumBase;
+import com.easyway.business.framework.common.enums.BaseEnum;
 import com.easyway.business.framework.json.JsonClothProcessor;
 import com.easyway.business.framework.json.util.JsonUtil;
 import com.easyway.business.framework.pojo.Page;
@@ -57,7 +57,7 @@ public final class ResultUtil {
         return ResultUtil.error(code, msg);
     }
     
-    public static ResultBody renderError(EnumBase errorInfo) {
+    public static ResultBody renderError(BaseEnum errorInfo) {
         return ResultUtil.error(errorInfo);
     }
     
@@ -69,12 +69,13 @@ public final class ResultUtil {
      * @return ResultBody
      */
     public static ResultBody renderBody(String code, String msg) {
-        return new ResultBody(code, msg);
+        return new ResultBody(Boolean.TRUE, code, msg);
     }
     
-    public static ResultBody renderBody(EnumBase errorInfo) {
+    public static ResultBody renderBody(BaseEnum errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
+        resultBody.setSuccess(Boolean.TRUE);
         resultBody.setCode(errorInfo.code());
         resultBody.setMsg(errorInfo.message());
         return resultBody;
@@ -93,12 +94,13 @@ public final class ResultUtil {
     }
 
     public static ResultBody error(String code, String msg) {
-        return new ResultBody(code, msg);
+        return new ResultBody(Boolean.FALSE, code, msg);
     }
 
-    public static ResultBody error(EnumBase errorInfo) {
+    public static ResultBody error(BaseEnum errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
+        resultBody.setSuccess(Boolean.FALSE);
         resultBody.setCode(errorInfo.code());
         resultBody.setMsg(errorInfo.message());
         return resultBody;

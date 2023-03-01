@@ -1,6 +1,6 @@
 package com.easyway.business.framework.common.enums;
 
-public enum BaseResultCodeEnum implements EnumBase {
+public enum BaseResultCodeEnum implements BaseEnum {
 
     /** 操作成功 */
     SUCCESS("SUCCESS", "操作成功"),
