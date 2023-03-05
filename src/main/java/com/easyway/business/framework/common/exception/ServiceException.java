@@ -26,7 +26,7 @@ public class ServiceException extends BaseException {
      * @param cause 异常原因
      */
     public ServiceException(Throwable cause) {
-        super((String) null, cause);
+        super(cause.getMessage(), cause);
     }
 
     /**
