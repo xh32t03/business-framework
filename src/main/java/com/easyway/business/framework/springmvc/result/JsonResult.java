@@ -1,6 +1,6 @@
 package com.easyway.business.framework.springmvc.result;
 
-import com.easyway.business.framework.common.enums.BaseResultCodeEnum;
+import com.easyway.business.framework.common.enums.BaseStatusEnum;
 
 /**
  * 返回结果
@@ -38,7 +38,7 @@ public final class JsonResult extends ResultBody {
 	public static JsonResult success(Object result) {
 		JsonResult jsonResult = new JsonResult();
 		jsonResult.setSuccess(Boolean.TRUE);
-		jsonResult.setCode(BaseResultCodeEnum.SUCCESS.code());
+		jsonResult.setCode(BaseStatusEnum.SUCCESS.code());
 		jsonResult.setData(result);
 		return jsonResult;
 	}

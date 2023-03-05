@@ -1,6 +1,6 @@
 package com.easyway.business.framework.springmvc.result;
 
-import com.easyway.business.framework.common.enums.BaseResultCodeEnum;
+import com.easyway.business.framework.common.enums.BaseStatusEnum;
 import com.easyway.business.framework.pojo.ToString;
 
 /**
@@ -30,14 +30,6 @@ public class ResultBody extends ToString {
 	 */
 	protected String msg = "ok";
 
-	public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-    
 	public ResultBody() {
 	}
 
@@ -50,7 +42,7 @@ public class ResultBody extends ToString {
 	public static ResultBody success() {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.TRUE);
-		resultBody.setCode(BaseResultCodeEnum.SUCCESS.code());
+		resultBody.setCode(BaseStatusEnum.SUCCESS.code());
 		resultBody.setMsg("ok");
 		return resultBody;
 	}
@@ -58,10 +50,18 @@ public class ResultBody extends ToString {
 	public static ResultBody error(String msg) {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.FALSE);
-		resultBody.setCode(BaseResultCodeEnum.FAILURE.code());
+		resultBody.setCode(BaseStatusEnum.BAD_REQUEST.code());
 		resultBody.setMsg(msg);
 		return resultBody;
 	}
+	
+	public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
 
 	public int getCode() {
 		return code;
