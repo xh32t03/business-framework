@@ -84,7 +84,7 @@ public enum BaseStatusEnum implements EnumBase {
      * @param code 枚举编号
      * @return BaseResultCodeEnum
      */
-    public static BaseStatusEnum getExceptionEnum(int code) {
+    public static BaseStatusEnum getResultEnum(int code) {
         for (BaseStatusEnum param : values()) {
             if (param.getCode() == code) {
                 return param;
