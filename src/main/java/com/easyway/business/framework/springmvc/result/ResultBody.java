@@ -13,8 +13,10 @@ public class ResultBody extends ToString {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
+    private static final long  serialVersionUID = 1L;
+    protected static final int SUCCESS_CODE     = BaseStatusEnum.SUCCESS.code();
+    protected static final int FAILED_CODE      = BaseStatusEnum.FAILED.code();
+	
 	/**
 	 * 是否成功
 	 */
@@ -42,7 +44,7 @@ public class ResultBody extends ToString {
 	public static ResultBody success() {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.TRUE);
-		resultBody.setCode(BaseStatusEnum.SUCCESS.code());
+		resultBody.setCode(SUCCESS_CODE);
 		resultBody.setMsg("ok");
 		return resultBody;
 	}
@@ -50,7 +52,7 @@ public class ResultBody extends ToString {
 	public static ResultBody error(String msg) {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.FALSE);
-		resultBody.setCode(BaseStatusEnum.FAILED.code());
+		resultBody.setCode(FAILED_CODE);
 		resultBody.setMsg(msg);
 		return resultBody;
 	}
