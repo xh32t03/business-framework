@@ -50,7 +50,7 @@ public class ResultBody extends ToString {
 	public static ResultBody error(String msg) {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.FALSE);
-		resultBody.setCode(BaseStatusEnum.BAD_REQUEST.code());
+		resultBody.setCode(BaseStatusEnum.FAILED.code());
 		resultBody.setMsg(msg);
 		return resultBody;
 	}

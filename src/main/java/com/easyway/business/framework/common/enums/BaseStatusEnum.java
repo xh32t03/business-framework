@@ -6,7 +6,7 @@ public enum BaseStatusEnum implements EnumBase {
     SUCCESS(200, "操作成功"),
 
     /** 操作失败 */
-    BAD_REQUEST(400, "操作失败"),
+    FAILED(400, "操作失败"),
 
     /** 未登录 */
     NO_AUTH(401, "未登录"),
