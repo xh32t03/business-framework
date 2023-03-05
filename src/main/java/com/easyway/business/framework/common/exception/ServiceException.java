@@ -43,7 +43,7 @@ public class ServiceException extends BaseException {
      * @param errorMessage 异常信息
      * @param cause 异常原因
      */
-    public ServiceException(String errorCode, String errorMessage, Throwable cause) {
+    public ServiceException(int errorCode, String errorMessage, Throwable cause) {
         super(errorMessage, cause);
         this.code = errorCode;
         this.message = errorMessage;

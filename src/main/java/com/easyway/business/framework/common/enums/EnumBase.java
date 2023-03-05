@@ -10,9 +10,9 @@ public interface EnumBase {
     /**
      * 获取枚举名
      * 
-     * @return String
+     * @return int
      */
-    public String code();
+    public int code();
 
     /**
      * 获取枚举消息
@@ -21,10 +21,4 @@ public interface EnumBase {
      */
     public String message();
 
-    /**
-     * 获取枚举值
-     * 
-     * @return Number
-     */
-    public Number value();
 }

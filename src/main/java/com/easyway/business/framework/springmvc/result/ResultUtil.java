@@ -53,7 +53,7 @@ public final class ResultUtil {
         return ResultUtil.error(msg);
     }
 
-    public static ResultBody renderError(String code, String msg) {
+    public static ResultBody renderError(int code, String msg) {
         return ResultUtil.error(code, msg);
     }
     
@@ -68,7 +68,7 @@ public final class ResultUtil {
      * @param msg
      * @return ResultBody
      */
-    public static ResultBody renderBody(String code, String msg) {
+    public static ResultBody renderBody(int code, String msg) {
         return new ResultBody(Boolean.TRUE, code, msg);
     }
     
@@ -93,7 +93,7 @@ public final class ResultUtil {
         return ResultBody.error(msg);
     }
 
-    public static ResultBody error(String code, String msg) {
+    public static ResultBody error(int code, String msg) {
         return new ResultBody(Boolean.FALSE, code, msg);
     }
 

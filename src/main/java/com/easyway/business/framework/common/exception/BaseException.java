@@ -12,7 +12,7 @@ public class BaseException extends RuntimeException {
     /** serialVersionUID */
     private static final long serialVersionUID = -6108023129642050288L;
 
-    protected String          code;
+    protected int             code;
 
     protected String          message;
 
@@ -34,7 +34,7 @@ public class BaseException extends RuntimeException {
     /**
      * @param message 消息
      */
-    public BaseException(String code, String message) {
+    public BaseException(int code, String message) {
         super(message);
         this.code = code;
         this.message = message;
@@ -92,13 +92,13 @@ public class BaseException extends RuntimeException {
      * @param message 消息
      * @param cause 原因
      */
-    public BaseException(String code, String message, Throwable cause) {
+    public BaseException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
         this.message = message;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
@@ -109,4 +109,5 @@ public class BaseException extends RuntimeException {
     public EnumBase getErrorEnum() {
         return errorEnum;
     }
+    
 }

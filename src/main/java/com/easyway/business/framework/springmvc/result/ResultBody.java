@@ -1,5 +1,6 @@
 package com.easyway.business.framework.springmvc.result;
 
+import com.easyway.business.framework.common.enums.BaseResultCodeEnum;
 import com.easyway.business.framework.pojo.ToString;
 
 /**
@@ -22,7 +23,7 @@ public class ResultBody extends ToString {
     /**
 	 * 状态码(0成功，-1代表失败)
 	 */
-	protected String code = "0";
+	protected int code = 0;
 
 	/**
 	 * 提示信息(正常情况返回ok，失败的时候返回错误的描述信息)
@@ -40,7 +41,7 @@ public class ResultBody extends ToString {
 	public ResultBody() {
 	}
 
-	public ResultBody(Boolean success, String code, String msg) {
+	public ResultBody(Boolean success, int code, String msg) {
 	    this.success = success;
 		this.code = code;
 		this.msg = msg;
@@ -49,7 +50,7 @@ public class ResultBody extends ToString {
 	public static ResultBody success() {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.TRUE);
-		resultBody.setCode("0");
+		resultBody.setCode(BaseResultCodeEnum.SUCCESS.code());
 		resultBody.setMsg("ok");
 		return resultBody;
 	}
@@ -57,16 +58,16 @@ public class ResultBody extends ToString {
 	public static ResultBody error(String msg) {
 		ResultBody resultBody = new ResultBody();
 		resultBody.setSuccess(Boolean.FALSE);
-		resultBody.setCode("-1");
+		resultBody.setCode(BaseResultCodeEnum.FAILURE.code());
 		resultBody.setMsg(msg);
 		return resultBody;
 	}
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 

@@ -1,5 +1,7 @@
 package com.easyway.business.framework.springmvc.result;
 
+import com.easyway.business.framework.common.enums.BaseResultCodeEnum;
+
 /**
  * 返回结果
  * 
@@ -20,13 +22,13 @@ public final class JsonResult extends ResultBody {
 	public JsonResult() {
 	}
 
-	public JsonResult(String code, String msg) {
+	public JsonResult(int code, String msg) {
 	    this.success = Boolean.TRUE;
 		this.code = code;
 		this.msg = msg;
 	}
 
-	public JsonResult(String code, String msg, Object data) {
+	public JsonResult(int code, String msg, Object data) {
 	    this.success = Boolean.TRUE;
 		this.code = code;
 		this.msg = msg;
@@ -36,6 +38,7 @@ public final class JsonResult extends ResultBody {
 	public static JsonResult success(Object result) {
 		JsonResult jsonResult = new JsonResult();
 		jsonResult.setSuccess(Boolean.TRUE);
+		jsonResult.setCode(BaseResultCodeEnum.SUCCESS.code());
 		jsonResult.setData(result);
 		return jsonResult;
 	}
