@@ -21,13 +21,13 @@ public final class JsonResult extends ResultBody {
 	}
 
 	public JsonResult(int code, String msg) {
-	    this.success = Boolean.TRUE;
+	    this.status = Boolean.TRUE;
 		this.code = code;
 		this.msg = msg;
 	}
 
 	public JsonResult(int code, String msg, Object data) {
-	    this.success = Boolean.TRUE;
+	    this.status = Boolean.TRUE;
 		this.code = code;
 		this.msg = msg;
 		this.data = data;
@@ -35,7 +35,7 @@ public final class JsonResult extends ResultBody {
 
 	public static JsonResult success(Object result) {
 		JsonResult jsonResult = new JsonResult();
-		jsonResult.setSuccess(Boolean.TRUE);
+		jsonResult.setStatus(Boolean.TRUE);
 		jsonResult.setCode(SUCCESS_CODE);
 		jsonResult.setData(result);
 		return jsonResult;

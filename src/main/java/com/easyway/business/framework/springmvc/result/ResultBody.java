@@ -20,7 +20,7 @@ public class ResultBody extends ToString {
 	/**
 	 * 是否成功
 	 */
-	protected Boolean success;
+	protected Boolean status;
     
     /**
 	 * 状态码(0成功，-1代表失败)
@@ -35,15 +35,15 @@ public class ResultBody extends ToString {
 	public ResultBody() {
 	}
 
-	public ResultBody(Boolean success, int code, String msg) {
-	    this.success = success;
+	public ResultBody(Boolean status, int code, String msg) {
+	    this.status = status;
 		this.code = code;
 		this.msg = msg;
 	}
 
 	public static ResultBody success() {
 		ResultBody resultBody = new ResultBody();
-		resultBody.setSuccess(Boolean.TRUE);
+		resultBody.setStatus(Boolean.TRUE);
 		resultBody.setCode(SUCCESS_CODE);
 		resultBody.setMsg("ok");
 		return resultBody;
@@ -51,18 +51,18 @@ public class ResultBody extends ToString {
 	
 	public static ResultBody error(String msg) {
 		ResultBody resultBody = new ResultBody();
-		resultBody.setSuccess(Boolean.FALSE);
+		resultBody.setStatus(Boolean.FALSE);
 		resultBody.setCode(FAILED_CODE);
 		resultBody.setMsg(msg);
 		return resultBody;
 	}
 	
-	public Boolean getSuccess() {
-        return success;
+	public Boolean getStatus() {
+        return status;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
 	public int getCode() {

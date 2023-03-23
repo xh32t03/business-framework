@@ -75,7 +75,7 @@ public final class ResultUtil {
     public static ResultBody renderBody(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
-        resultBody.setSuccess(Boolean.TRUE);
+        resultBody.setStatus(Boolean.TRUE);
         resultBody.setCode(errorInfo.code());
         resultBody.setMsg(errorInfo.message());
         return resultBody;
@@ -100,7 +100,7 @@ public final class ResultUtil {
     public static ResultBody error(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
-        resultBody.setSuccess(Boolean.FALSE);
+        resultBody.setStatus(Boolean.FALSE);
         resultBody.setCode(errorInfo.code());
         resultBody.setMsg(errorInfo.message());
         return resultBody;
