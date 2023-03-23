@@ -15,7 +15,7 @@ import com.easyway.business.framework.util.ReflectUtil;
 public class QueryPojo {
 
     private Set<Condition>      appendCondition = null;
-    private Map<String, Object> queryParamMap   = null;
+    private Map<String, Object> paramMap        = null;
 
     @SuppressWarnings("all")
     public ConditionQuery buildConditionQuery() {
@@ -42,8 +42,8 @@ public class QueryPojo {
         if (this.appendCondition != null) {
             query.addAll(new ArrayList<>(appendCondition));
         }
-        if (this.queryParamMap != null) {
-            query.addAllParam(this.queryParamMap);
+        if (this.paramMap != null) {
+            query.addAllParam(this.paramMap);
         }
         return query;
     }
@@ -56,13 +56,6 @@ public class QueryPojo {
         return ConditionUtil.getConditions(this);
     }
 
-    public void appendQueryParam(String key, Object value) {
-        if (this.queryParamMap == null) {
-            this.queryParamMap = new HashMap<String, Object>();
-        }
-        this.queryParamMap.put(key, value);
-    }
-
     public void appendCondition(Condition condition) {
         if (this.appendCondition == null) {
             this.appendCondition = new HashSet<Condition>();
@@ -70,4 +63,10 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
+    public void appendQueryParam(String key, Object value) {
+        if (this.paramMap == null) {
+            this.paramMap = new HashMap<String, Object>();
+        }
+        this.paramMap.put(key, value);
+    }
 }

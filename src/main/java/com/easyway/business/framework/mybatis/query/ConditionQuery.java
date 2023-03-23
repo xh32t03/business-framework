@@ -77,6 +77,14 @@ public class ConditionQuery {
         }
     }
     
+    public void addParam(String key, Object value) {
+        this.paramMap.put(key, value);
+    }
+
+    public void addAllParam(Map<String, Object> map) {
+        this.paramMap.putAll(map);
+    }
+
     public List<Condition> getAllCondition() {
         List<Condition> ret = new ArrayList<Condition>();
         ret.addAll(this.criteriaWithoutValue);
@@ -89,15 +97,7 @@ public class ConditionQuery {
     public Map<String, Object> getParamMap() {
         return this.paramMap;
     }
-
-    public void addParam(String key, Object value) {
-        this.paramMap.put(key, value);
-    }
-
-    public void addAllParam(Map<String, Object> map) {
-        this.paramMap.putAll(map);
-    }
-
+    
     public ConditionQuery cloneConditionQuery() {
         ConditionQuery query = new ConditionQuery();
         query.addAll(this.getAllCondition());
