@@ -63,7 +63,7 @@ public class QueryPojo {
         this.appendCondition.add(condition);
     }
 
-    public void appendQueryParam(String key, Object value) {
+    public void appendParam(String key, Object value) {
         if (this.paramMap == null) {
             this.paramMap = new HashMap<String, Object>();
         }
