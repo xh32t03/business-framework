@@ -12,7 +12,7 @@ public class CrudController<Pojo extends BasePojo, Bo extends CrudBo<Pojo, ? ext
 
     public ResultBody save(Pojo pojo) {
         if (null == pojo) {
-            return ResultBody.error("新增数据不能为空！");
+            return ResultBody.error("数据不能为空");
         }
         bo.save(pojo);
         return ResultBody.success();
@@ -20,7 +20,7 @@ public class CrudController<Pojo extends BasePojo, Bo extends CrudBo<Pojo, ? ext
 
     public ResultBody update(Pojo pojo) {
         if (null == pojo) {
-            return ResultBody.error("修改数据不能为空！");
+            return ResultBody.error("数据不能为空");
         }
         bo.update(pojo);
         return ResultBody.success();
@@ -28,7 +28,7 @@ public class CrudController<Pojo extends BasePojo, Bo extends CrudBo<Pojo, ? ext
 
     public ResultBody delete(Serializable id) {
         if (null == id) {
-            return ResultBody.error("删除数据不能为空！");
+            return ResultBody.error("数据不能为空");
         }
         bo.delete(id);
         return ResultBody.success();
