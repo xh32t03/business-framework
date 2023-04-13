@@ -1,7 +1,5 @@
 package com.easyway.business.framework.constant;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -35,9 +33,4 @@ public final class Constant {
     public static final List<String>            FILTER_LIST          =
             CollectionUtil.arrayToList(new String[] {"sortname", "sortorder", "pageSize", "pageNum",
                     "list", "pages", "total", "appendCondition", "queryParamMap"});
-    
-    public static final Charset DEFAULT_CHARSET;
-    static {
-        DEFAULT_CHARSET = StandardCharsets.UTF_8;
-    }
 }
