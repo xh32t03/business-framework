@@ -1,7 +1,6 @@
 package com.easyway.business.framework.mybatis.query.condition;
 
 import java.util.List;
-import com.easyway.business.framework.constant.Constant;
 
 public final class ConditionFactory {
     public static Condition buildSqlCondition(String sql) {
@@ -11,11 +10,11 @@ public final class ConditionFactory {
     public static Condition buildSingleValueCondition(String tableAlias, String column, String equal, Object value) {
         return new SingleValueCondition(tableAlias, column, equal, value);
     }
-
-    public static Condition buildSingleValueCondition(String tableAlias, String column, Object value) {
-        return new SingleValueCondition(tableAlias, column, Constant.EQUAL, value);
-    }
     
+    public static Condition buildSingleValueCondition(String tableAlias, String column, Object value) {
+        return new SingleValueCondition(tableAlias, column, value);
+    }
+
     public static Condition buildSingleValueCondition(String column, Object value) {
         return new SingleValueCondition(column, value);
     }
@@ -36,13 +35,13 @@ public final class ConditionFactory {
     public static Condition buildListCondition(String tableAlias, String column, String equal, Object[] list) {
         return new ListValueCondition(tableAlias, column, equal, list);
     }
-
+    
     public static Condition buildListCondition(String tableAlias, String column, List<Object> list) {
-        return new ListValueCondition(tableAlias, column, Constant.IN, list);
+        return new ListValueCondition(tableAlias, column, list);
     }
-
+    
     public static Condition buildListCondition(String tableAlias, String column, Object[] list) {
-        return new ListValueCondition(tableAlias, column, Constant.IN, list);
+        return new ListValueCondition(tableAlias, column, list);
     }
 
     public static Condition buildListCondition(String column, List<Object> list) {
@@ -52,4 +51,5 @@ public final class ConditionFactory {
     public static Condition buildListCondition(String column, Object[] list) {
         return new ListValueCondition(column, list);
     }
+    
 }
