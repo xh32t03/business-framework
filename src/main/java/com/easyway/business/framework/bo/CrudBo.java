@@ -7,6 +7,8 @@ import com.easyway.business.framework.pojo.BasePojo;
 
 /**
  * 业务层增、删、改、查通用父类
+ * 
+ * @author xl.liu
  */
 public class CrudBo<T extends BasePojo, Dao extends CrudDao<T>> extends SchBo<T, Dao> {
 

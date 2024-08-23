@@ -15,6 +15,8 @@ import com.easyway.business.framework.pojo.QueryPojo;
 
 /**
  * 业务层查询通用父类,适用仅需查询功能需求
+ * 
+ * @author xl.liu
  */
 public class SchBo<T extends BasePojo, Dao extends SchDao<T>> {
 
