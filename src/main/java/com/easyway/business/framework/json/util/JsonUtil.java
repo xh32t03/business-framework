@@ -3,6 +3,8 @@ package com.easyway.business.framework.json.util;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.Collection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -12,7 +14,8 @@ import com.easyway.business.framework.json.annotion.NotJsonData;
 
 public final class JsonUtil {
 
-    private static final DecimalFormat dfm = new DecimalFormat("##0.00");
+    private static final Logger        logger = LoggerFactory.getLogger(JsonUtil.class);
+    private static final DecimalFormat dfm    = new DecimalFormat("##0.00");
 
     public static JSONObject toJSONObject(Object target) {
         if (target == null) {
@@ -24,9 +27,9 @@ public final class JsonUtil {
             Method[] methods = target.getClass().getMethods();
             for (Method method : methods) {
                 methodName = method.getName();
-                if ((methodName.startsWith("get") && (method.getParameterTypes().length == 0)
-                        && (!methodName.equals("getClass"))) && (!methodName.equals("getHandler"))
-                        && (!method.isAnnotationPresent(NotJsonData.class))) {
+                if ((methodName.startsWith("get") && method.getParameterTypes().length == 0)
+                        && (!method.isAnnotationPresent(NotJsonData.class))
+                        && (!methodName.equals("getClass") && !methodName.equals("getHandler"))) {
                     String field =
                             methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
                     Object value = method.invoke(target, new Object[0]);
@@ -60,7 +63,7 @@ public final class JsonUtil {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(e.getMessage(), e);
         }
         return jsObject;
     }

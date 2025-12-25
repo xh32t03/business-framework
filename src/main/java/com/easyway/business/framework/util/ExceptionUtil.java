@@ -76,7 +76,7 @@ public class ExceptionUtil {
                 RuntimeException runtimeException;
 
                 try {
-                    runtimeException = runtimeExceptionClass.newInstance();
+                    runtimeException = runtimeExceptionClass.getDeclaredConstructor().newInstance();
                 } catch (Exception ee) {
                     return new RuntimeException(e);
                 }

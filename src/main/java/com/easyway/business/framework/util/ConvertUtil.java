@@ -4,8 +4,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.cglib.beans.BeanMap;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -117,18 +119,24 @@ public class ConvertUtil {
      * @param clazz
      */
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
-        List<T> list = new ArrayList<T>();
-        if (maps != null && maps.size() > 0) {
-            Map<String, Object> map = null;
-            T bean = null;
-            for (int i = 0, size = maps.size(); i < size; i++) {
-                map = maps.get(i);
-                try {
-                    bean = clazz.newInstance();
-                    mapToBean(map, bean);
-                    list.add(bean);
-                } catch (Exception e) {
+        if (maps == null) {
+            return Collections.emptyList();
+        }
+        
+        List<T> list = new ArrayList<T>(maps.size());
+        T bean = null;
+        for (Map<String, Object> map : maps) {
+            try {
+                Constructor<T> constructor = clazz.getDeclaredConstructor();
+                if (!constructor.canAccess(null)) {
+                    constructor.setAccessible(true);
                 }
+                bean = constructor.newInstance();
+                mapToBean(map, bean);
+                list.add(bean);
+            } catch (Exception e) {
+                throw new RuntimeException(
+                    "Cannot create instance of " + clazz.getName(), e);
             }
         }
         return list;
