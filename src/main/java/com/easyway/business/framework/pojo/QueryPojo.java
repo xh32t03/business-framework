@@ -26,7 +26,7 @@ public class QueryPojo {
             Set<Map.Entry<String, Field>> entryseSet = fieldMap.entrySet();
             for (Map.Entry<String, Field> entry : entryseSet) {
                 Field field = entry.getValue();
-                if (!field.canAccess(null)) {
+                if (!field.isAccessible()) {
                     field.setAccessible(true);
                 }
                 try {

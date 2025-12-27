@@ -118,6 +118,7 @@ public class ConvertUtil {
      * @param maps
      * @param clazz
      */
+    @SuppressWarnings("all")
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) {
         if (maps == null) {
             return Collections.emptyList();
@@ -128,7 +129,7 @@ public class ConvertUtil {
         for (Map<String, Object> map : maps) {
             try {
                 Constructor<T> constructor = clazz.getDeclaredConstructor();
-                if (!constructor.canAccess(null)) {
+                if (!constructor.isAccessible()) {
                     constructor.setAccessible(true);
                 }
                 bean = constructor.newInstance();
