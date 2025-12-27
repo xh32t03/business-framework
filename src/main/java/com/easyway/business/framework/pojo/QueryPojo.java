@@ -22,7 +22,7 @@ public class QueryPojo {
         ConditionQuery query = newConditionQuery();
         query.addAll(toConditions());
         try {
-            Map<String, Field> fieldMap = ReflectUtil.getClassFields(this.getClass(), true);
+            Map<String, Field> fieldMap = ReflectUtil.getClassFields(this.getClass());
             Set<Map.Entry<String, Field>> entryseSet = fieldMap.entrySet();
             for (Map.Entry<String, Field> entry : entryseSet) {
                 Field field = entry.getValue();

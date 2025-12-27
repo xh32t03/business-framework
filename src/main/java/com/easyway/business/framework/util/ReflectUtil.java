@@ -40,7 +40,28 @@ public final class ReflectUtil {
     }
 
     /**
-     * 获取类的所有字段（包括父类）
+     * 获取类的所有字段（直接反射获取，无缓存）
+     * 
+     * @param clazz
+     * @return
+     */
+    public static Map<String, Field> getClassFields(Class<?> clazz) {
+        if (clazz == null) {
+            return new LinkedHashMap<>();
+        }
+        
+        Map<String, Field> fieldMap = new LinkedHashMap<>();
+        collectFields(fieldMap, clazz, true);
+        
+        // 过滤掉黑名单中的字段
+        fieldMap.entrySet().removeIf(entry -> 
+            Constant.FILTER_LIST != null && Constant.FILTER_LIST.contains(entry.getKey()));
+        
+        return fieldMap;
+    }
+    
+    /**
+     * 获取类的所有字段（直接反射获取，缓存）
      *
      * @param clazz               目标类
      * @param includeParentClass  是否包含父类字段
@@ -89,7 +110,22 @@ public final class ReflectUtil {
             currentClass = currentClass.getSuperclass();
         }
     }
-
+    
+    public static Field[] getCacheFields(Class<?> clazz) {
+        if (clazz == null) {
+            return new Field[0];
+        }
+        
+        Field[] cachedFields = FIELDS_CACHE.get(clazz);
+        if (cachedFields != null) {
+            return cachedFields.clone(); // 返回副本保证线程安全
+        }
+        
+        Field[] fields = getFields(clazz, true);
+        FIELDS_CACHE.put(clazz, fields.clone());
+        return fields;
+    }
+    
     /**
      * 获得一个类中所有字段列表，包括其父类中的字段
      * <p>如果子类与父类中存在同名字段，则只保留子类字段</p>
@@ -102,13 +138,7 @@ public final class ReflectUtil {
             return new Field[0];
         }
         
-        Field[] cachedFields = FIELDS_CACHE.get(clazz);
-        if (cachedFields != null) {
-            return cachedFields.clone(); // 返回副本保证线程安全
-        }
-        
         Field[] fields = getFields(clazz, true);
-        FIELDS_CACHE.put(clazz, fields.clone());
         return fields;
     }
 
@@ -147,13 +177,7 @@ public final class ReflectUtil {
         return fieldList.toArray(new Field[0]);
     }
 
-    /**
-     * 获得一个类中所有方法列表，包括其父类中的方法
-     *
-     * @param clazz 类
-     * @return 方法数组
-     */
-    public static Method[] getMethods(Class<?> clazz) {
+    public static Method[] getCacheMethods(Class<?> clazz) {
         if (clazz == null) {
             return new Method[0];
         }
@@ -165,6 +189,21 @@ public final class ReflectUtil {
         
         Method[] methods = getMethods(clazz, true);
         METHODS_CACHE.put(clazz, methods.clone());
+        return methods;
+    }
+    
+    /**
+     * 获得一个类中所有方法列表，包括其父类中的方法
+     *
+     * @param clazz 类
+     * @return 方法数组
+     */
+    public static Method[] getMethods(Class<?> clazz) {
+        if (clazz == null) {
+            return new Method[0];
+        }
+        
+        Method[] methods = getMethods(clazz, true);
         return methods;
     }
 
