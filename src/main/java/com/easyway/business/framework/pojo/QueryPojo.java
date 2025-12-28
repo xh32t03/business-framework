@@ -2,12 +2,11 @@ package com.easyway.business.framework.pojo;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import com.easyway.business.framework.mybatis.query.ConditionQuery;
 import com.easyway.business.framework.mybatis.query.condition.Condition;
 import com.easyway.business.framework.mybatis.util.ConditionUtil;
@@ -15,7 +14,7 @@ import com.easyway.business.framework.util.ReflectUtil;
 
 public class QueryPojo {
 
-    private Set<Condition>      appendCondition = Collections.synchronizedSet(new HashSet<>());
+    private Set<Condition>      appendCondition = new ConcurrentSkipListSet<>();
     private Map<String, Object> paramMap        = new ConcurrentHashMap<>();
 
     @SuppressWarnings("all")
@@ -60,9 +59,7 @@ public class QueryPojo {
     }
 
     public void appendCondition(Condition condition) {
-        synchronized (appendCondition) {
-            this.appendCondition.add(condition);
-        }
+        this.appendCondition.add(condition);
     }
 
     public void appendParam(String key, Object value) {
