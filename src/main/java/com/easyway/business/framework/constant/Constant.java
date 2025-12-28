@@ -2,8 +2,7 @@ package com.easyway.business.framework.constant;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import com.easyway.business.framework.util.CollectionUtil;
+import java.util.Set;
 
 public final class Constant {
 
@@ -30,7 +29,6 @@ public final class Constant {
     public static final String                  GREAT_THAN           = ">";
     public static final String                  LESS_THAN            = "<";
 
-    public static final List<String>            FILTER_LIST          =
-            CollectionUtil.arrayToList(new String[] {"sortname", "sortorder", "pageSize", "pageNum",
-                    "list", "pages", "total", "appendCondition", "paramMap"});
+    public static final Set<String> FILTER_LIST = Set.of("serialVersionUID", "sortname", "sortorder", "pageSize", "pageNum",
+            "list", "pages", "total", "appendCondition", "paramMap");
 }

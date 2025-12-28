@@ -28,7 +28,7 @@ public final class ReflectUtil {
     /**
      * 字段映射缓存（按类缓存字段Map，包含是否包含父类的不同配置）
      */
-    private static final SimpleCache<String, Map<String, Field>> FIELD_MAP_CACHE = new SimpleCache<>();
+    private static final SimpleCache<String, Map<String, Field>> CLASS_FIELDS_CACHE = new SimpleCache<>();
     
     private ReflectUtil() {
         throw new UnsupportedOperationException("工具类不允许实例化");
@@ -73,7 +73,7 @@ public final class ReflectUtil {
         }
         
         String cacheKey = generateCacheKey(clazz, includeParentClass);
-        Map<String, Field> cachedMap = FIELD_MAP_CACHE.get(cacheKey);
+        Map<String, Field> cachedMap = CLASS_FIELDS_CACHE.get(cacheKey);
         if (cachedMap != null) {
             return new LinkedHashMap<>(cachedMap); // 返回副本保证线程安全
         }
@@ -85,7 +85,7 @@ public final class ReflectUtil {
         fieldMap.entrySet().removeIf(entry -> 
             Constant.FILTER_LIST != null && Constant.FILTER_LIST.contains(entry.getKey()));
         
-        FIELD_MAP_CACHE.put(cacheKey, new LinkedHashMap<>(fieldMap));
+        CLASS_FIELDS_CACHE.put(cacheKey, new LinkedHashMap<>(fieldMap));
         return fieldMap;
     }
     
@@ -412,7 +412,7 @@ public final class ReflectUtil {
     public static void clearCache() {
         FIELDS_CACHE.clear();
         METHODS_CACHE.clear();
-        FIELD_MAP_CACHE.clear();
+        CLASS_FIELDS_CACHE.clear();
     }
     
     /**
