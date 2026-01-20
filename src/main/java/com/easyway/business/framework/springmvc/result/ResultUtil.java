@@ -163,6 +163,22 @@ public final class ResultUtil {
                 .collect(Collectors.toList());
     }
     
+    /**
+     * 将T类型对象转为JSON
+     * 
+     * List<JSONObject> jsonList = transform(userList, user -> {
+     *     JSONObject json = new JSONObject();
+     *     json.put("userId", user.getId());
+     *     json.put("userName", user.getName());
+     *     json.put("userAge", user.getAge());
+     *     return json;
+     * });
+     * 
+     * @param <T>
+     * @param collection
+     * @param transformer
+     * @return
+     */
     public static <T> List<JSONObject> transform(Collection<T> collection,
             Function<T, JSONObject> transformer) {
 
