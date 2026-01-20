@@ -1,8 +1,11 @@
 package com.easyway.business.framework.springmvc.result;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import com.alibaba.fastjson.JSONObject;
 import com.easyway.business.framework.common.enums.EnumBase;
 import com.easyway.business.framework.json.JsonClothProcessor;
@@ -128,14 +131,90 @@ public final class ResultUtil {
         return renderError(errorInfo);
     }
 
-    public static List<JSONObject> wearCloth(List<?> list, JsonClothProcessor clothProcessor) {
-        if (list == null) {
+    public static <T> JSONObject wearCloth(T pojo, JsonClothProcessor processor) {
+        if (pojo == null) {
+            return new JSONObject();
+        }
+
+        return processor.wearCloth(pojo, JsonUtil.toJSONObject(pojo));
+    }
+    
+    /**
+     * 返回数据穿衣
+     * 
+     * List<JSONObject> result = ResultUtil.wearCloth(users, (user, json) -> {
+     *     json.put("processed", true);
+     *     json.put("timestamp", System.currentTimeMillis());
+     *     return json;
+     * });
+     * 
+     * @param list
+     * @param processor
+     * @return
+     */
+    public static List<JSONObject> wearCloth(List<?> list, JsonClothProcessor processor) {
+        if (list == null || list.isEmpty()) {
             list = Collections.emptyList();
         }
-        List<JSONObject> jsonObjList = new ArrayList<JSONObject>(list.size());
-        for (Object pojo : list) {
-            jsonObjList.add(clothProcessor.wearCloth(pojo, JsonUtil.toJSONObject(pojo)));
+
+        return list.parallelStream()
+                .map(pojo -> processor.wearCloth(pojo, JsonUtil.toJSONObject(pojo)))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+    
+    public static <T> List<JSONObject> transform(Collection<T> collection,
+            Function<T, JSONObject> transformer) {
+
+        if (collection == null || collection.isEmpty()) {
+            return Collections.emptyList();
         }
-        return jsonObjList;
+
+        return collection.stream().map(transformer).filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * 建造者模式，提供更灵活的配置
+     * 
+     * List<JSONObject> result = ResultUtil.builder(User.class)
+     *     .collection(users)
+     *     .processor((user, json) -> {
+     *         json.put("processed", true);
+     *         json.put("timestamp", System.currentTimeMillis());
+     *         return json;
+     *     }).build();
+     * @param <T>
+     */
+    public static class Builder<T> {
+        private List<T> collection;
+        private JsonClothProcessor processor;
+        
+        public Builder<T> collection(List<T> collection) {
+            this.collection = collection;
+            return this;
+        }
+        
+        public Builder<T> processor(JsonClothProcessor processor) {
+            this.processor = processor;
+            return this;
+        }
+        
+        public List<JSONObject> build() {
+            if (processor == null) {
+                throw new IllegalArgumentException("Processor must not be null");
+            }
+            
+            if (collection == null || collection.isEmpty()) {
+                return Collections.emptyList();
+            }
+            
+            return wearCloth(collection, processor);
+        }
+    }
+    
+    // 静态工厂方法
+    public static <T> Builder<T> builder(Class<T> clazz) {
+        return new Builder<>();
     }
 }
