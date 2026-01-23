@@ -13,6 +13,7 @@ public class ErrorResult extends ResultBody {
     // 静态工厂方法
     public static ErrorResult of(String code, String msg) {
         ErrorResult response = new ErrorResult();
+        response.setStatus(Boolean.FALSE);
         response.code = code;
         response.msg = msg;
         return response;
