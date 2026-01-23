@@ -1,5 +1,6 @@
 package com.easyway.business.framework.springmvc.result;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ErrorResult extends ResultBody {
@@ -8,7 +9,7 @@ public class ErrorResult extends ResultBody {
      * 
      */
     private static final long   serialVersionUID = 1L;
-    private Map<String, Object> details;
+    private Map<String, Object> details = new LinkedHashMap<String, Object>();
 
     // 静态工厂方法
     public static ErrorResult of(String code, String msg) {
