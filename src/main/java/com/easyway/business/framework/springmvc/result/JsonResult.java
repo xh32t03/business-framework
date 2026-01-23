@@ -16,17 +16,17 @@ public final class JsonResult extends ResultBody {
 	 * 响应结果
 	 */
 	private Object data;
-
+	
 	public JsonResult() {
 	}
 
-	public JsonResult(int code, String msg) {
+	public JsonResult(String code, String msg) {
 	    this.status = Boolean.TRUE;
 		this.code = code;
 		this.msg = msg;
 	}
 
-	public JsonResult(int code, String msg, Object data) {
+	public JsonResult(String code, String msg, Object data) {
 	    this.status = Boolean.TRUE;
 		this.code = code;
 		this.msg = msg;
@@ -36,11 +36,10 @@ public final class JsonResult extends ResultBody {
 	public static JsonResult success(Object result) {
 		JsonResult jsonResult = new JsonResult();
 		jsonResult.setStatus(Boolean.TRUE);
-		jsonResult.setCode(SUCCESS_CODE);
 		jsonResult.setData(result);
 		return jsonResult;
 	}
-
+	
 	public Object getData() {
 		return data;
 	}

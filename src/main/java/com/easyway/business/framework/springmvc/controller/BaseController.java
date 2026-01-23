@@ -26,7 +26,7 @@ public class BaseController {
         return ResultUtil.success(result);
     }
 
-    protected static ResultBody renderSuccess(int code, String msg) {
+    protected static ResultBody renderSuccess(String code, String msg) {
         return ResultUtil.success(code, msg);
     }
     
@@ -43,7 +43,7 @@ public class BaseController {
         return ResultUtil.error(msg);
     }
     
-    protected static ResultBody renderError(int code, String msg) {
+    protected static ResultBody renderError(String code, String msg) {
         return ResultUtil.error(code, msg);
     }
     

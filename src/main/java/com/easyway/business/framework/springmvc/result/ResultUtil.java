@@ -32,19 +32,19 @@ public final class ResultUtil {
      *
      * @return ResultBody
      */
-    private static ResultBody renderSuccess() {
+    public static ResultBody success() {
         return ResultBody.success();
     }
 
-    private static ResultBody renderSuccess(Object result) {
+    public static ResultBody success(Object result) {
         return JsonResult.success(result);
     }
     
-    private static ResultBody renderSuccess(int code, String msg) {
+    public static ResultBody success(String code, String msg) {
         return new ResultBody(Boolean.TRUE, code, msg);
     }
     
-    private static ResultBody renderSuccess(EnumBase errorInfo) {
+    public static ResultBody success(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
         resultBody.setStatus(Boolean.TRUE);
@@ -54,20 +54,20 @@ public final class ResultUtil {
     }
 
     /**
-     * 渲染失败数据
+     * 返回错误
      *
      * @param msg
      * @return ResultBody
      */
-    private static ResultBody renderError(String msg) {
+    public static ResultBody error(String msg) {
         return ResultBody.error(msg);
     }
 
-    private static ResultBody renderError(int code, String msg) {
+    public static ResultBody error(String code, String msg) {
         return new ResultBody(Boolean.FALSE, code, msg);
     }
     
-    private static ResultBody renderError(EnumBase errorInfo) {
+    public static ResultBody error(EnumBase errorInfo) {
         Assert.assertNotNull(errorInfo);
         ResultBody resultBody = new ResultBody();
         resultBody.setStatus(Boolean.FALSE);
@@ -76,61 +76,6 @@ public final class ResultUtil {
         return resultBody;
     }
     
-    /**
-     * 返回成功
-     * 
-     * @return
-     */
-    public static ResultBody ok() {
-        return success();
-    }
-
-    public static ResultBody ok(Object result) {
-        return success(result);
-    }
-    
-    public static ResultBody ok(int code, String msg) {
-        return success(code, msg);
-    }
-    
-    public static ResultBody ok(EnumBase errorInfo) {
-        return success(errorInfo);
-    }
-    
-    public static ResultBody success() {
-        return renderSuccess();
-    }
-
-    public static ResultBody success(Object result) {
-        return renderSuccess(result);
-    }
-
-    public static ResultBody success(int code, String msg) {
-        return renderSuccess(code, msg);
-    }
-    
-    public static ResultBody success(EnumBase errorInfo) {
-        return renderSuccess(errorInfo);
-    }
-    
-    /**
-     * 返回错误
-     * 
-     * @param msg
-     * @return
-     */
-    public static ResultBody error(String msg) {
-        return renderError(msg);
-    }
-
-    public static ResultBody error(int code, String msg) {
-        return renderError(code, msg);
-    }
-
-    public static ResultBody error(EnumBase errorInfo) {
-        return renderError(errorInfo);
-    }
-
     public static <T> JSONObject wearCloth(T pojo, JsonClothProcessor processor) {
         if (pojo == null) {
             return new JSONObject();

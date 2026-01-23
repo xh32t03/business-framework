@@ -12,7 +12,7 @@ public interface EnumBase {
      * 
      * @return int
      */
-    public int code();
+    public String code();
 
     /**
      * 获取枚举消息
